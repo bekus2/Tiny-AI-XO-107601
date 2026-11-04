@@ -1,0 +1,133 @@
+{
+  "project": "Tiny AI XO 107601",
+  "version": "2.1.0",
+  "date": "2026-11-05",
+  "author": "Beck Sarbassov",
+  "copyright": "© Beck Sarbassov. Все права защищены.",
+  "additional_training_for_release": false,
+  "release_starts_with_zero_games": false,
+  "trained_weights_in_distribution": true,
+  "bundled_checkpoint": {
+    "path": "model/checkpoint-185.json",
+    "games": 185,
+    "self_games": 183,
+    "human_games": 2,
+    "updates": 1110,
+    "sha256": "404d3e64e49f2aaf00ca3a5847497159ea7b02e5a80e17689eb68e3ee17811b7",
+    "exact_user_export_preserved": true
+  },
+  "architecture": {
+    "layers": [
+      81,
+      256,
+      256,
+      81
+    ],
+    "hidden_neurons": 512,
+    "parameters": 107601,
+    "float32_weight_bytes": 430404
+  },
+  "engine_tests": {
+    "passed": 22,
+    "failed": 0,
+    "command": "node --test tests/engine.test.cjs",
+    "personal_checkpoint_precedes_seed": true,
+    "corrupt_personal_checkpoint_not_replaced": true,
+    "explicit_zero_reset_survives_reload": true,
+    "complete_seed_roundtrip_exact": true,
+    "test_learning_isolated_not_shipped": true
+  },
+  "browser": {
+    "date": "2026-11-05",
+    "method": "Computer Use in-app browser on a separate localhost test origin",
+    "fresh_browser_starts_at_185": true,
+    "initial_updates": 1110,
+    "self_play_start_stop": true,
+    "isolated_test_games_after_play": 191,
+    "isolated_test_updates_after_play": 1146,
+    "reopen_preserved_191_games": true,
+    "saved_checkpoint_precedes_bundled_seed": true,
+    "indexedDB_saved_notice": true,
+    "console_errors": [],
+    "console_warnings": [],
+    "narrow_viewport_screenshot_reviewed": true,
+    "live_user_game_untouched": true,
+    "file_protocol_retested": false,
+    "note": "The original test tab was cleaned up by the browser session; reopening the same test origin recovered its 191-game state. No browser-profile or live-user storage access."
+  },
+  "prior_browser_validation": {
+    "release": "2.0.0",
+    "date": "2026-10-29",
+    "checks": {
+      "browser": "156.0.8078.48",
+      "offline_file_protocol": true,
+      "worker": true,
+      "completed_human_game_changed_weights": true,
+      "persist_reload_exact": true,
+      "export_import_exact": true,
+      "reset_confirmed": true,
+      "bad_import_rejected": true,
+      "self_play_user_triggered": true,
+      "revision_conflict_detected": true,
+      "keyboard": true,
+      "touch": true,
+      "responsive": [
+        {
+          "width": 320,
+          "scroll": 320
+        },
+        {
+          "width": 390,
+          "scroll": 390
+        },
+        {
+          "width": 768,
+          "scroll": 768
+        },
+        {
+          "width": 1024,
+          "scroll": 1024
+        }
+      ],
+      "worker_fallback": true,
+      "unavailable_storage_notice": true,
+      "errors": [],
+      "external_requests": [],
+      "modal_pause_cancel": true,
+      "reset_as_O_resumes_AI": true,
+      "final_page_errors": [],
+      "localStorage_save_reload": true,
+      "corrupt_checkpoint_blocks_until_recovery": true
+    },
+    "note": "Historical checks; not a claim that all flows were rerun for 2.1.0."
+  },
+  "strength_evaluation": {
+    "checkpoint_games": 185,
+    "results": "evaluation/results.json",
+    "reproduce": "node evaluation/audit.cjs",
+    "evaluation_matches": 2400,
+    "independent_tactical_positions": 800,
+    "complete_history_reproduced_weights_exactly": true,
+    "training_during_evaluation_matches": false,
+    "training_probes_use_discarded_copies": true
+  },
+  "limitations": [
+    "The 185-game model remains tactically weak; more self-play does not guarantee improvement.",
+    "Replay is limited to 2048 positions and history to 200 games.",
+    "Browser/origin storage can be cleared; users should export checkpoints.",
+    "Only narrow in-app-browser startup/self-play/persistence were retested for 2.1.0; older broad browser checks are explicitly historical.",
+    "Safari, Firefox and Edge have not been separately validated.",
+    "An unfinished board is not part of checkpoint exports."
+  ],
+  "previous_model_included": false,
+  "documentation": [
+    "README.md",
+    "HANDOFF.md",
+    "PROJECT_CONTEXT.md",
+    "Codex_History.md",
+    "TASK.md",
+    "AI_RULES.md",
+    "MODEL_CARD_RU.md",
+    "evaluation/README.md"
+  ]
+}

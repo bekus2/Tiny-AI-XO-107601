@@ -1,0 +1,18 @@
+# Tiny AI XO 107601 | Beck Sarbassov | v2.0.0 | 2026-10-29
+# © Beck Sarbassov. Все права защищены.
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+experiment_model*/
+*-games.json
+.env
+.env.*
+!.env.example
+
+# Deliberately published seed; private checkpoint exports stay ignored.
+!model/checkpoint-185.json
+playwright-report/
+test-results/

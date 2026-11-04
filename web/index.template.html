@@ -1,0 +1,68 @@
+<!doctype html>
+<!--
+Проект: Tiny AI XO 107601 | Файл: web/index.template.html
+Автор: Beck Sarbassov | Версия: 2.1.0
+Дата выпуска: 2026-10-29 | Последнее обновление: 2026-11-05
+Авторские права: © Beck Sarbassov. Все права защищены.
+EN: Offline online-learning game. RU: Офлайн-игра с обучением после партий.
+-->
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tiny AI XO 107601: крестики-нолики 9×9. Учебная нейросеть с опытом 185 партий продолжает обучение в браузере. Играйте, исследуйте и сохраняйте свою копию.">
+  <meta name="author" content="Beck Sarbassov"><meta name="theme-color" content="#155e54">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; worker-src blob:; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta property="og:title" content="Tiny AI XO 107601 — играй и обучай свой ИИ"><meta property="og:description" content="9×9. Пять подряд — победа. Девять — суперпобеда. Обучение из ваших партий, без облака."><meta property="og:type" content="website">
+  <title>Tiny AI XO 107601 — 9×9, ИИ учится с вами</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23155e54'/%3E%3Ctext x='10' y='44' fill='white' font-family='Arial' font-size='36'%3EXO%3C/text%3E%3C/svg%3E">
+  <style>__CSS__</style>
+</head>
+<body>
+<div class="shell">
+  <header><a class="brand" href="#play"><span class="brand-symbol" aria-hidden="true"><span class="cross">X</span><span class="nought">O</span></span>Tiny AI XO 107601</a><nav aria-label="Навигация"><a href="#play">Играть</a><a href="#learning-details" id="about-link">Обучение</a></nav></header>
+  <main id="play">
+    <div class="intro"><h1>Сыграй. Научи. Попробуй снова.</h1><p>Исследуй ИИ через игру: начни с опыта 185 партий и обучай свою копию дальше.</p></div>
+    <p class="notice" id="notice" role="alert" hidden></p><noscript><p class="error">Для игры нужен JavaScript. Интернет и установка программ не требуются.</p></noscript>
+    <div class="game-layout">
+      <section aria-label="Крестики-нолики 9 на 9">
+        <div class="game-toolbar"><div class="choose-side"><span id="side-label">Ты играешь</span><div class="side-switch" role="group" aria-labelledby="side-label"><button id="choose-x" type="button" aria-pressed="true" aria-label="Играть за X">X</button><button id="choose-o" type="button" aria-pressed="false" aria-label="Играть за O">O</button></div></div><div class="status" id="status" role="status" aria-live="polite" aria-atomic="true"><span class="status-dot" aria-hidden="true"></span><span id="status-text">Загрузка…</span></div></div>
+        <div class="board-caption"><span>5–8 подряд — победа · 9 — суперпобеда</span><span id="move-count">Ход 0 / 81</span></div>
+        <div id="board" class="board" role="group" aria-label="Поле 9 на 9. Побеждает линия от пяти фигур."></div>
+        <div class="actions"><button class="primary" id="new-game" type="button">Новая партия</button><button class="secondary" id="auto-play" type="button" aria-pressed="false">ИИ играет сам</button><button class="secondary" id="toggle-scores" type="button" aria-pressed="false">Оценки на поле</button></div>
+        <div class="scores" aria-label="Накопленные результаты модели против людей"><span>Человек <b id="score-human" class="cross">0</b></span><span>Ничьи <b id="score-draw">0</b></span><span>ИИ <b id="score-ai" class="nought">0</b></span></div>
+        <p class="rules-note">Пять или больше в непрерывной линии: по горизонтали, вертикали или диагонали. X начинает.</p>
+      </section>
+      <aside class="model-panel" aria-labelledby="model-title">
+        <h2 id="model-title">Сеть учится с тобой</h2><p class="architecture">81 → 256 → 256 → 81</p>
+        <div class="layer-diagram" aria-label="81 вход, два скрытых слоя по 256 нейронов и 81 выход"><span><b>81</b><small>клетка</small></span><span><b>256</b><small>нейронов</small></span><span><b>256</b><small>нейронов</small></span><span><b>81</b><small>ход</small></span></div>
+        <div class="model-bottom"><div><strong>107 601</strong> параметр</div><p>512 скрытых нейронов · 2 слоя</p></div>
+        <p id="learning-level" class="learning-level">Начинающая сеть</p><p class="muted">В поставке — опыт 185 партий. ИИ лучше случайной игры, но часто пропускает угрозы. Больше опыта не гарантирует победу.</p>
+        <div class="experience-metrics"><div><strong id="games-count">0</strong><span>партий опыта</span></div><div><strong id="updates-count">0</strong><span>обновлений весов</span></div></div>
+        <p class="memory-line">Память позиций <b id="memory-count">0 / 2 048</b></p>
+        <p id="learning-note" class="learning-note" role="status" aria-live="polite">Загружаю сохранённый или учебный опыт…</p>
+        <p id="storage-state" class="storage-state">Проверяю сохранение…</p>
+        <button id="retry-save" class="secondary" type="button" hidden>Повторить сохранение</button>
+        <div class="transfer-actions"><button id="export-model" class="secondary" type="button">Скачать мой ИИ</button><button id="import-model" class="quiet-button" type="button">Загрузить мой ИИ из файла</button><input id="import-file" type="file" accept=".json,application/json" hidden aria-label="Файл опыта ИИ"></div>
+        <details class="policy-details"><summary>Какие ходы предпочитает сеть</summary><p id="policy-label" class="muted"></p><div id="top-moves"></div></details>
+      </aside>
+    </div>
+    <div class="details-row"><details id="learning-details"><summary>Как сохраняется и растёт опыт</summary><div class="details-content">
+      <h2>Каждая законченная партия — новый опыт</h2>
+      <p>Сеть получает награду +1 за ходы победителя и −1 за ходы проигравшего. По этому сигналу меняются настоящие веса всех трёх соединяющих слоёв. У поздних ходов больше вес. При ничьей награда 0: исход запоминается, веса не меняются.</p>
+      <p>Сохраняются веса, состояние обучения, последние 200 партий и до 2048 позиций. Старые позиции постепенно уступают место новым, а накопленные изменения остаются в весах. Это ограниченная память, а не бесконечная база всех комбинаций.</p>
+      <p>После партии выполняется шесть небольших обновлений по восемь примеров из нового и прежнего опыта. Повороты и отражения доски помогают переносить выученное на похожие ситуации. Незавершённая партия не обучает. Учебные веса получены с нуля в этой игре; сторонних моделей и внешнего ИИ нет.</p>
+      <p>«ИИ играет сам» запускает партии и обучение прямо на поле. Нажмите снова, чтобы остановить; незавершённая партия сбросится. Автоигра сама при открытии не включается. В начале сеть слаба; опыт может помогать, но отдельные партии не гарантируют улучшение и сильную стратегию.</p>
+      <p>Опыт хранится только в этом браузере для этого адреса. В новом браузере загружается учебная копия с опытом 185 партий. Сохранённый личный опыт всегда имеет приоритет. Очистка данных браузера удаляет личный прогресс. Чтобы перенести её, скачайте свой ИИ и загрузите файл в другом месте. При запрете сохранения появится предупреждение; вкладку можно использовать с ручным экспортом.</p>
+      <p>Сыграно с собой: <b id="self-count">0</b>. Использовано обучающих примеров: <b id="example-count">0</b>. Эти числа описывают опыт, а не качество игры. Непобедимость для 9×9 не заявляется.</p>
+      <p>Хотите сравнить с необученной сетью? Сначала скачайте свой ИИ, затем подтвердите «Удалить опыт и начать с нуля». Для возврата к учебному опыту импортируйте model/checkpoint-185.json из проекта. Начальные две игры с человеком и их результаты входят в общий счёт модели.</p>
+      <h3>Последние партии</h3><ul id="history" class="game-history" aria-label="Журнал исходов"></ul>
+      <button class="quiet-button danger" id="reset-model" type="button">Удалить опыт и начать с нуля</button>
+    </div></details></div>
+  </main>
+  <footer><span>Собственный ИИ · Локальное обучение · Без облака</span><span>© 2026 Beck Sarbassov</span></footer>
+</div>
+<dialog id="confirm-dialog"><h2 id="confirm-title"></h2><p id="confirm-text"></p><div class="dialog-actions"><button id="confirm-cancel" type="button" class="secondary">Отмена</button><button id="confirm-yes" type="button" class="primary">Подтвердить замену</button></div></dialog>
+<script type="application/json" id="bundled-checkpoint">__BUNDLED_CHECKPOINT__</script>
+<script type="text/plain" id="worker-source">__WORKER_SOURCE__</script>
+<script>__CORE_JS__</script><script>__NEURAL_JS__</script><script>__LEARNER_JS__</script><script>__BOOTSTRAP_JS__</script><script>__STORAGE_JS__</script><script>__CLIENT_JS__</script><script>__APP_JS__</script>
+</body></html>

@@ -1,0 +1,36 @@
+{
+  "name": "Tiny AI XO 107601",
+  "version": "2.1.0",
+  "author": "Beck Sarbassov",
+  "created": "2026-10-29",
+  "architecture": [
+    81,
+    256,
+    256,
+    81
+  ],
+  "parameter_count": 107601,
+  "hidden_neurons": 512,
+  "initial_seed": 107601,
+  "initialization": "Xavier uniform random; zero biases",
+  "pretrained": true,
+  "preliminary_training_performed": false,
+  "training": "Browser outcome-weighted policy gradients, Adam and bounded replay after completed games",
+  "float32_weight_bytes": 430404,
+  "starting_games": 185,
+  "updated": "2026-11-05",
+  "training_origin": "Trained from scratch by browser play: 183 self-play games and 2 human games; no external model.",
+  "startup_policy": "Use personal saved checkpoint first; otherwise use the bundled 185-game checkpoint. Explicit reset starts at zero.",
+  "bundled_checkpoint": {
+    "path": "model/checkpoint-185.json",
+    "sha256": "404d3e64e49f2aaf00ca3a5847497159ea7b02e5a80e17689eb68e3ee17811b7",
+    "games": 185,
+    "self_games": 183,
+    "human_games": 2,
+    "optimizer_updates": 1110,
+    "training_examples": 8880,
+    "replay_positions": 2048,
+    "history_games": 185,
+    "format": "tiny-ai-xo-online-v2"
+  }
+}

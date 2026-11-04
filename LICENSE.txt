@@ -1,0 +1,60 @@
+Tiny AI XO 107601 — Educational use license / Лицензия образовательного использования
+Version / Версия: 2.1.0
+Author / Автор: Beck Sarbassov
+Created / Дата создания: 2026-10-27
+Updated / Последнее обновление: 2026-11-05
+© 2026 Beck Sarbassov. All rights reserved except as expressly granted below.
+© 2026 Beck Sarbassov. Все права защищены, кроме явно предоставленных ниже.
+
+ENGLISH
+
+This permission applies to this project's source code, documentation, synthetic
+game records and distributed neural-network checkpoint owned by Beck Sarbassov.
+
+Everyone is granted permission, free of charge, to download, run, play, study,
+train, copy, modify, fork and share the project and derived model checkpoints
+for personal, educational, research and other noncommercial experimentation.
+Teachers and students may use it in classes and practical learning exercises.
+
+Copies, forks and modified distributions must retain this license and Beck
+Sarbassov's copyright/author attribution. Modified versions must clearly identify
+that they are modified, without implying the author's endorsement. Sharing a
+trained or modified model does not remove the original project's attribution.
+
+Commercial use, sale, sublicensing under broader terms and other rights not
+expressly granted above require separate permission from Beck Sarbassov. This
+is a limited educational-use permission, not an unrestricted OSI open-source
+license. No trademark or endorsement rights are granted.
+
+The project is provided "as is", without warranty of fitness, accuracy, strength,
+uninterrupted operation or preservation of browser data. To the extent permitted
+by applicable law, the author is not liable for losses arising from its use.
+Users should export important learning checkpoints before changing or clearing
+browser data. Third-party notices, if any, continue to apply to their components.
+
+РУССКИЙ
+
+Разрешение относится к принадлежащим Beck Sarbassov исходному коду, документации,
+синтетическим игровым записям и поставляемому чекпоинту нейросети этого проекта.
+
+Всем бесплатно разрешается скачивать, запускать, играть, изучать, обучать,
+копировать, изменять, создавать форки и распространять проект и производные
+чекпоинты для личных, образовательных, исследовательских и иных некоммерческих
+экспериментов. Преподаватели и учащиеся могут использовать его на занятиях
+и в практических учебных упражнениях.
+
+Копии, форки и изменённые поставки должны сохранять эту лицензию, указание
+авторства Beck Sarbassov и авторских прав. Изменённые версии нужно ясно обозначать
+как изменённые, не создавая впечатления одобрения автором. Передача обученной
+или изменённой модели не отменяет авторство исходного проекта.
+
+Коммерческое использование, продажа, выдача более широких сублицензий и иные
+непредоставленные выше права требуют отдельного разрешения Beck Sarbassov.
+Это ограниченное разрешение образовательного использования, а не неограниченная
+открытая лицензия OSI. Права на товарные знаки и одобрение автора не предоставляются.
+
+Проект предоставляется «как есть», без гарантии пригодности, точности, силы игры,
+бесперебойной работы или сохранности данных браузера. В пределах, допускаемых
+применимым правом, автор не отвечает за убытки от использования. Перед изменением
+или очисткой данных браузера экспортируйте важный опыт. При наличии сторонних
+компонентов их собственные условия продолжают действовать.

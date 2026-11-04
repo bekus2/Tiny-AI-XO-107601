@@ -1,0 +1,6 @@
+# Tiny AI XO 107601 | Beck Sarbassov | v2.0.0 | 2026-10-29
+# © Beck Sarbassov. Все права защищены.
+* text=auto eol=lf
+*.f32 binary
+*.png binary
+*.zip binary

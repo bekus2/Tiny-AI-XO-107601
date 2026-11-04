@@ -1,0 +1,26 @@
+# Project / Проект: Tiny AI XO 107601
+# Author / Автор: Beck Sarbassov | Version: 2.1.0
+# Released / Updated: 2026-11-05
+# © Beck Sarbassov. All rights reserved / Все права защищены.
+# EN: Check committed offline build, integrity and engine behavior.
+# RU: Проверка автономной сборки, целостности и движка.
+name: Integrity and engine tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check standalone build, checksums and behavior
+        run: python3 -B -S tests.py
