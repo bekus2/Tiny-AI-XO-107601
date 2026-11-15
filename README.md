@@ -2,9 +2,9 @@
 
 **EN:** The current default is the exact **318-game checkpoint from the published Sites release**, plus its optional bounded tactical search (enabled for human games by default). The new RU/EN interface is preserved. Self-play still uses only the neural network. Existing local saves, including intentional zero-game saves, are never silently replaced. Use “Restore the shared starting model” and confirm to replace a personal copy, exporting it first if needed. The original `model/checkpoint-185.json` is retained for reproducible historical comparisons. The older 185-game evaluation numbers below are not measurements of this stronger release. No new performance claims are made. This is a shared fixed starting model, **not cloud-synchronized collective learning**.
 
-**RU:** Теперь по умолчанию поставляется точная **модель с опытом 318 партий из опубликованной Sites-версии** и её отключаемый тактический поиск (включён при игре с человеком). Новый интерфейс RU/EN сохранён. Самоигра по-прежнему использует только нейросеть. Личный сохранённый опыт, включая намеренный старт с нуля, не перезаписывается. Для явной замены есть «Начать с общей модели» с подтверждением; сначала экспортируйте личный опыт, если он нужен. Исходный `model/checkpoint-185.json` сохранён для воспроизводимости прежних сравнений. Приведённые далее старые результаты модели185 не описывают силу новой версии. Новые показатели качества не заявляются. Это общая фиксированная стартовая модель, **не облачное коллективное обучение**.
+**RU:** Теперь по умолчанию поставляется точная **модель с опытом 318 партий из опубликованной Sites-версии** и её отключаемый тактический поиск (включён при игре с человеком). Новый интерфейс RU/EN сохранён. Самоигра по-прежнему использует только нейросеть. Личный сохранённый опыт, включая намеренный старт с нуля, не перезаписывается. Для явной замены есть «Начать с общей модели» с подтверждением; сначала экспортируйте личный опыт, если он нужен. Исходный `model/checkpoint-185.json` сохранён для воспроизводимости прежних сравнений. Приведённые далее старые результаты модели 185 не описывают силу новой версии. Новые показатели качества не заявляются. Это общая фиксированная стартовая модель, **не облачное коллективное обучение**.
 
-Older sections below describe the previous185-game release unless stated otherwise. / Старые разделы ниже описывают предыдущую версию с185 партиями, если не указано иное.
+The usage instructions below describe the current release. Only the explicitly historical evaluation sections describe the 185-game model. / Инструкции ниже описывают текущую версию. Только явно исторические разделы оценки описывают модель с опытом 185 партий.
 
 # Tiny AI XO 107601 — v2.1.0
 
@@ -19,11 +19,11 @@ Older sections below describe the previous185-game release unless stated otherwi
 
 Tiny AI XO 107601 is an educational, offline **9×9 X/O game** with a small neural network written in plain JavaScript. Its purpose is to make AI understandable through play: watch decisions, finish games, see real weight updates, save your own model, and experiment with training. It is a game-playing model, not a chatbot or a general-purpose AI.
 
-This release includes **Beck Sarbassov's partially trained checkpoint after 185 games**. A fresh browser starts from that experience. Existing local experience takes priority, including a model deliberately reset to zero. You can continue training the included model or export your progress and explicitly start a new random model. All computation happens on your device; no AI service, API key or account is needed. The downloaded copy can be played without an internet connection.
+This release includes **Beck Sarbassov's 318-game checkpoint from the published Sites release**. A fresh browser starts from that experience. Existing local experience takes priority, including a model deliberately reset to zero. You can continue training the included model or export your progress and explicitly start a new random model. All computation happens on your device; no AI service, API key or account is needed. The downloaded copy can be played without an internet connection.
 
 ### Play online
 
-Open **[Tiny AI XO 107601 in your browser](https://bekus2.github.io/Tiny-AI-XO-107601/)**. No download or installation is required. The first visit with no saved experience at this web address uses the bundled **185-game model**; later visits continue that address's saved model. Loading the website requires an internet connection; learning and storage happen on your device, with no cloud synchronization.
+Open **[Tiny AI XO 107601 in your browser](https://bekus2.github.io/Tiny-AI-XO-107601/)**. No download or installation is required. The first visit with no saved experience at this web address uses the bundled **318-game model**; later visits continue that address's saved model. Loading the website requires an internet connection; learning and storage happen on your device, with no cloud synchronization.
 
 ### Download and play
 
@@ -48,9 +48,13 @@ The downloaded `index.html` and the HTTPS website have separate browser storage.
 3. Click **“Import my AI”**, choose the checkpoint you want to continue and confirm the replacement. Import replaces the current model; it does not merge two histories.
 4. Check the experience counter, continue playing and export backups regularly. Your original export and the experience at the old address remain available.
 
-### What has the included AI learned?
+### Current starting model and historical evaluation
 
-The bundled file is [`model/checkpoint-185.json`](model/checkpoint-185.json). It contains **185 games: 183 self-play and 2 against a human**, **1,110 weight updates**, **8,880 sampled training examples** including repeats, and **2,048 remembered positions**. Its complete journal contains all 185 games. All 107,601 parameters differ from the initial random model. Replaying the journal in an isolated copy reproduced the weights and optimizer state exactly.
+The default file is [`model/checkpoint-318.json`](model/checkpoint-318.json): **318 games (316 self-play and 2 human games)**, **1,908 weight updates**, **15,264 sampled training examples** including repeats, **2,048 remembered positions**, and the last **200 games** in its bounded journal. These counters describe experience, not a new measurement of playing strength. The optional tactical search is a separate decision aid, not additional neural-network training.
+
+#### Historical evaluation: 185-game network, without the tactical mode
+
+The preserved historical file is [`model/checkpoint-185.json`](model/checkpoint-185.json). It contains **185 games: 183 self-play and 2 against a human**, **1,110 weight updates**, **8,880 sampled training examples** including repeats, and **2,048 remembered positions**. Its complete journal contains all 185 games. All 107,601 parameters differ from the initial random model. Replaying the journal in an isolated copy reproduced the weights and optimizer state exactly.
 
 A fixed evaluation compared the initial and trained network under the same conditions, playing both X and O. The main comparison used the highest-scoring move without random exploration; weights were frozen during evaluation.
 
@@ -72,7 +76,7 @@ The audit ran 2,400 games in total, including a second comparison with equal 10%
 81×256 + 256 + 256×256 + 256 + 256×81 + 81 = 107601
 ```
 
-Each input cell is +1 for the current player's mark, −1 for the opponent and 0 for empty. Outputs are masked to legal cells and normalized with softmax. Gameplay chooses the highest preference with occasional exploration: initially 22%, decreasing with experience to a minimum of 5%. There is no minimax, hidden tactical fallback or external AI. Float32 inference weights occupy 430,404 bytes; optimizer arrays and history are additional storage.
+Each input cell is +1 for the current player's mark, −1 for the opponent and 0 for empty. Outputs are masked to legal cells and normalized with softmax. Gameplay chooses the highest preference with occasional exploration: initially 22%, decreasing with experience to a minimum of 5%. This describes neural-only move selection. Human games enable the visible, optional strong mode by default: `web/tactics.js` performs a bounded tactical search using the network's move preferences. It can be switched off; self-play always uses only the neural network. No external AI service is used. Float32 inference weights occupy 430,404 bytes; optimizer arrays and history are additional storage.
 
 The original model starts from Xavier uniform random weights, zero biases and seed 107601. The included experience was accumulated through play from that initialization, without imported third-party model weights. After each completed decisive game, winner actions receive positive rewards and loser actions negative rewards, discounted by 0.97 per remaining move. Six Adam updates each use eight examples, approximately 65% from the latest game and the rest from replay, with random rotations/reflections. Learning rate is 0.0003, entropy coefficient 0.003 and gradient norm limit 1. All matrices and biases are trained. A draw is recorded without weight updates; interrupted games and repeated recent completion notifications do not train.
 
@@ -82,7 +86,7 @@ This is an experimental outcome-weighted policy learner. It does not explicitly 
 
 Export a starting checkpoint, play a fixed number of complete games, export again, then compare both checkpoints on the same opponents and positions. Keep test games separate from training. Compare human play with self-play, inspect a missed block, or change one training setting in your own copy. Record the seed, opponent, number of games and whether exploratory moves were enabled. The included checkpoint offers everyone the same reproducible starting experience.
 
-To study learning from random initialization, export your current experience first and use the confirmed reset control. To restore the distributed 185-game model, import `model/checkpoint-185.json`. Existing local progress is never automatically replaced with the bundled checkpoint.
+To study learning from random initialization, export your current experience first and use the confirmed reset control. To restore the current 318-game starting model, use “Restore the shared starting model” and confirm, or import `model/checkpoint-318.json`. Export your personal model first if you want to keep it. Import `model/checkpoint-185.json` only to reproduce the historical evaluation. Existing local progress is never automatically replaced with the bundled checkpoint.
 
 ### Storage, privacy and safety
 
@@ -109,12 +113,14 @@ Set `XO_NODE` to your Node executable if it is not on PATH. On Windows, use `py 
 
 | Path | Purpose |
 |---|---|
-| `index.html` | Ready-to-play standalone game with the embedded 185-game checkpoint |
+| `index.html` | Ready-to-play standalone game with the embedded 318-game checkpoint |
 | `web/` | Interface, rules, neural network, learning, persistence and Worker source |
 | `web/bootstrap.js` | Validated startup selection that preserves existing local experience |
 | `web/i18n.js`, `web/messages.js` | RU/EN selection, static translations and dynamic messages |
 | `model/manifest.json` | Architecture and release/checkpoint metadata |
-| `model/checkpoint-185.json` | Original partially trained state, also available for manual import |
+| `model/checkpoint-318.json` | Current shared starting checkpoint from the published Sites release |
+| `model/checkpoint-185.json` | Historical checkpoint retained for reproducible comparisons |
+| `web/tactics.js` | Optional bounded tactical search for human games; not used in self-play |
 | `build_demo.py` | Embeds sources, styles and the checkpoint; refreshes checksums; never trains |
 | `tests/engine.test.cjs`, `tests.py` | Numerical, rules, checkpoint and build/integrity checks |
 | `evaluation/` | Reproducible strength audit and its recorded results |
@@ -134,11 +140,11 @@ The [license](LICENSE.txt) permits free educational/personal/noncommercial use, 
 
 Tiny AI XO 107601 — образовательная офлайн-игра **крестики-нолики 9×9** с небольшой нейросетью на обычном JavaScript. Цель — объяснять ИИ через увлекательную игру: наблюдать решения, завершать партии, видеть реальные обновления весов, сохранять свою модель и экспериментировать с обучением. Это игровая сеть, а не чатбот или универсальный ИИ.
 
-В поставку входит **частично обученная модель Beck Sarbassov с опытом 185 партий**. Новый браузер начинает с этого опыта. Уже сохранённая локальная модель имеет приоритет, в том числе модель после осознанного сброса до нуля. Можно продолжать обучение поставляемой сети либо экспортировать свой прогресс и начать со случайных весов. Расчёты выполняются на вашем устройстве; аккаунт, ключи API или внешний ИИ не нужны. Скачанная копия работает без интернета.
+В поставку входит **модель Beck Sarbassov с опытом 318 партий из опубликованной Sites-версии**. Новый браузер начинает с этого опыта. Уже сохранённая локальная модель имеет приоритет, в том числе модель после осознанного сброса до нуля. Можно продолжать обучение поставляемой сети либо экспортировать свой прогресс и начать со случайных весов. Расчёты выполняются на вашем устройстве; аккаунт, ключи API или внешний ИИ не нужны. Скачанная копия работает без интернета.
 
 ### Играть онлайн
 
-Откройте **[Tiny AI XO 107601 в браузере](https://bekus2.github.io/Tiny-AI-XO-107601/)**. Скачивание и установка не требуются. При первом посещении без сохранённого опыта для этого адреса используется встроенная **модель после 185 партий**; следующие посещения продолжают сохранённую модель этого адреса. Для загрузки сайта нужен интернет; обучение и хранение выполняются на вашем устройстве, без облачной синхронизации.
+Откройте **[Tiny AI XO 107601 в браузере](https://bekus2.github.io/Tiny-AI-XO-107601/)**. Скачивание и установка не требуются. При первом посещении без сохранённого опыта для этого адреса используется встроенная **модель после 318 партий**; следующие посещения продолжают сохранённую модель этого адреса. Для загрузки сайта нужен интернет; обучение и хранение выполняются на вашем устройстве, без облачной синхронизации.
 
 ### Скачать и начать играть
 
@@ -163,9 +169,13 @@ Tiny AI XO 107601 — образовательная офлайн-игра **к�
 3. Нажмите **«Загрузить мой ИИ из файла»**, выберите нужный чекпоинт и подтвердите замену. Импорт заменяет текущую модель, а не объединяет две истории.
 4. Проверьте счётчик опыта, продолжайте играть и регулярно скачивайте резервные копии. Исходный экспорт и опыт по прежнему адресу останутся доступными.
 
-### Какой опыт накоплен и чему ИИ научился?
+### Текущая стартовая модель и историческая оценка
 
-Файл [`model/checkpoint-185.json`](model/checkpoint-185.json) содержит **185 партий: 183 самоигры и 2 с человеком**, **1 110 обновлений весов**, **8 880 обучающих примеров** с повторами и **2 048 записей позиций**. Сохранён полный журнал всех 185 игр. Все 107 601 параметр отличаются от исходной сети. Воспроизведение журнала на отдельной копии в точности восстановило веса и состояние оптимизатора.
+По умолчанию используется [`model/checkpoint-318.json`](model/checkpoint-318.json): **318 партий (316 самоигр и 2 с человеком)**, **1 908 обновлений весов**, **15 264 обучающих примера** с повторами, **2 048 записей позиций** и **200 последних партий** в ограниченном журнале. Эти счётчики описывают опыт, а не новое измерение силы игры. Отключаемый тактический поиск помогает выбирать ход отдельно от обучения нейросети.
+
+#### Историческая оценка: сеть после 185 партий, без тактического режима
+
+Сохранённый исторический файл [`model/checkpoint-185.json`](model/checkpoint-185.json) содержит **185 партий: 183 самоигры и 2 с человеком**, **1 110 обновлений весов**, **8 880 обучающих примеров** с повторами и **2 048 записей позиций**. Сохранён полный журнал всех 185 игр. Все 107 601 параметр отличаются от исходной сети. Воспроизведение журнала на отдельной копии в точности восстановило веса и состояние оптимизатора.
 
 Исходная и обученная сеть проверялись в одинаковых условиях за X и O. В основном сравнении использовался ход с максимальной оценкой без случайного исследования; во время тестовых матчей веса не обучались.
 
@@ -183,7 +193,7 @@ Tiny AI XO 107601 — образовательная офлайн-игра **к�
 
 Архитектура **81 → 256 tanh → 256 tanh → 81 linear**: 512 скрытых нейронов в двух слоях, ровно **107 601 обучаемый параметр**. Формула: `81×256 + 256 + 256×256 + 256 + 256×81 + 81`. Веса занимают 430 404 байта float32; оптимизатор и история требуют дополнительной памяти.
 
-Вход от лица текущего игрока: +1 — своя фигура, −1 — чужая, 0 — пусто. Выходы ограничиваются свободными клетками и нормализуются softmax. Обычно выбирается максимальная оценка; иногда исследуется случайный ход. Вероятность исследования уменьшается с 22% до минимальных 5% по мере роста опыта. Минимакса, скрытой тактической подстраховки и внешнего ИИ нет.
+Вход от лица текущего игрока: +1 — своя фигура, −1 — чужая, 0 — пусто. Выходы ограничиваются свободными клетками и нормализуются softmax. Обычно выбирается максимальная оценка; иногда исследуется случайный ход. Вероятность исследования уменьшается с 22% до минимальных 5% по мере роста опыта. Это описание выбора хода только нейросетью. При игре с человеком по умолчанию включён видимый отключаемый сильный режим: `web/tactics.js` выполняет ограниченный тактический поиск с учётом предпочтений сети. Его можно выключить; самоигра всегда использует только нейросеть. Внешний ИИ-сервис не используется.
 
 Исходная инициализация — Xavier uniform, seed 107601, смещения нулевые. Поставляемый опыт получен играми начиная с этой сети, без чужих готовых весов. После решающей партии ходы победителя получают положительную награду, проигравшего — отрицательную, с дисконтом 0.97 за оставшийся ход. Выполняются шесть обновлений Adam по восемь примеров: около 65% из последней партии, остальные из памяти, с поворотами и отражениями. Скорость обучения 0.0003, коэффициент энтропии 0.003, ограничение нормы градиента 1. Меняются все матрицы и смещения. Ничья сохраняется без обновления весов; прерванные игры и повторные недавние уведомления не обучают.
 
@@ -191,9 +201,9 @@ Tiny AI XO 107601 — образовательная офлайн-игра **к�
 
 ### Образовательный эксперимент
 
-Экспортируйте начальное состояние, сыграйте фиксированное число полных партий, экспортируйте снова и сравните обе модели на одинаковых соперниках и позициях. Отделяйте проверку от обучения. Сравните игры с человеком и самоигру, разберите пропущенную блокировку или измените один параметр обучения в своей копии. Записывайте seed, соперника, число игр и наличие случайных ходов. Встроенные 185 партий дают всем одинаковую воспроизводимую исходную точку.
+Экспортируйте начальное состояние, сыграйте фиксированное число полных партий, экспортируйте снова и сравните обе модели на одинаковых соперниках и позициях. Отделяйте проверку от обучения. Сравните игры с человеком и самоигру, разберите пропущенную блокировку или измените один параметр обучения в своей копии. Записывайте seed, соперника, число игр и наличие случайных ходов. Встроенная модель с опытом 318 партий даёт новым браузерам одинаковую воспроизводимую исходную точку.
 
-Для изучения обучения с нуля сначала скачайте текущий опыт, затем используйте подтверждаемый сброс. Для возврата к поставляемой модели импортируйте `model/checkpoint-185.json`. Существующий локальный прогресс не заменяется встроенной моделью автоматически.
+Для изучения обучения с нуля сначала скачайте текущий опыт, затем используйте подтверждаемый сброс. Для возврата к текущей стартовой модели с опытом 318 партий используйте «Начать с общей модели» с подтверждением либо импортируйте `model/checkpoint-318.json`. Сначала скачайте личный опыт, если хотите его сохранить. `model/checkpoint-185.json` предназначен для воспроизведения исторической оценки. Существующий локальный прогресс не заменяется встроенной моделью автоматически.
 
 ### Хранение и безопасность
 
