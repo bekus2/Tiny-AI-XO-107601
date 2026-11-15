@@ -3,7 +3,7 @@
 **Play. Train. Experiment. Learn how a small neural network works.**  
 **Играй. Обучай. Экспериментируй. Узнай, как работает небольшая нейросеть.**
 
-[Download ZIP / Скачать ZIP](https://github.com/bekus2/Tiny-AI-XO-107601/archive/refs/heads/main.zip) · [Model card / Карточка модели](MODEL_CARD_RU.md) · [Evaluation / Проверка силы](evaluation/README.md) · [License / Лицензия](LICENSE.txt)
+[Play in browser / Играть в браузере](https://bekus2.github.io/Tiny-AI-XO-107601/) · [Download ZIP / Скачать ZIP](https://github.com/bekus2/Tiny-AI-XO-107601/archive/refs/heads/main.zip) · [Model card / Карточка модели](MODEL_CARD_RU.md) · [Evaluation / Проверка силы](evaluation/README.md) · [License / Лицензия](LICENSE.txt)
 
 ## English
 
@@ -11,7 +11,11 @@
 
 Tiny AI XO 107601 is an educational, offline **9×9 X/O game** with a small neural network written in plain JavaScript. Its purpose is to make AI understandable through play: watch decisions, finish games, see real weight updates, save your own model, and experiment with training. It is a game-playing model, not a chatbot or a general-purpose AI.
 
-This release includes **Beck Sarbassov's partially trained checkpoint after 185 games**. A fresh browser starts from that experience. Existing local experience takes priority, including a model deliberately reset to zero. You can continue training the included model or export your progress and explicitly start a new random model. All computation happens on your device; no AI service, API key, account or internet connection is needed to play.
+This release includes **Beck Sarbassov's partially trained checkpoint after 185 games**. A fresh browser starts from that experience. Existing local experience takes priority, including a model deliberately reset to zero. You can continue training the included model or export your progress and explicitly start a new random model. All computation happens on your device; no AI service, API key or account is needed. The downloaded copy can be played without an internet connection.
+
+### Play online
+
+Open **[Tiny AI XO 107601 in your browser](https://bekus2.github.io/Tiny-AI-XO-107601/)**. No download or installation is required. The first visit with no saved experience at this web address uses the bundled **185-game model**; later visits continue that address's saved model. Loading the website requires an internet connection; learning and storage happen on your device, with no cloud synchronization.
 
 ### Download and play
 
@@ -33,6 +37,15 @@ The interface is currently in Russian; this guide and the project documentation 
 | Удалить опыт и начать с нуля | Explicitly replace local experience with a random zero-game model |
 
 A continuous line of **five or more** horizontally, vertically or diagonally wins immediately. Five–eight is a win; nine is a **super win**. A single move can join two shorter chains. A full board without a winning line is a draw. Use mouse, touch, Tab, Enter/Space or arrow navigation. Stopping self-play discards the unfinished game; an update already running finishes. Percentages shown on cells are preferences, **not probabilities of winning**.
+
+### Continue your existing experience on the website
+
+The downloaded `index.html` and the HTTPS website have separate browser storage. Publishing or opening the website does not transfer or erase the experience at your old address.
+
+1. Open the local game or address where your latest experience is saved and click **“Скачать мой ИИ”** to export its JSON checkpoint.
+2. Open the [website](https://bekus2.github.io/Tiny-AI-XO-107601/). If you already trained a model there, export that model too before replacing it.
+3. Click **“Загрузить мой ИИ из файла”**, choose the checkpoint you want to continue and confirm the replacement. Import replaces the current model; it does not merge two histories.
+4. Check the experience counter, continue playing and export backups regularly. Your original export and the experience at the old address remain available.
 
 ### What has the included AI learned?
 
@@ -107,11 +120,11 @@ Set `XO_NODE` to your Node executable if it is not on PATH. On Windows, use `py 
 | `HANDOFF.md`, `PROJECT_CONTEXT.md`, `TASK.md`, `AI_RULES.md`, `Codex_History.md` | Handoff, architecture, requirements, contributor rules and history |
 | `design/README.md` | Existing visual and responsive design decisions |
 
-For a static website, deploy **`index.html`** with UTF-8 and HTTPS. All runtime assets and the checkpoint are embedded. No database migrations, server secrets or build service are necessary. Source publication on GitHub is separate from website hosting; this README does not claim that GitHub Pages is enabled. Rebuild after source changes. Keep personal checkpoint exports out of public commits unless you intend to share them.
+GitHub Pages deployment uses **GitHub Actions from `main`**, publishing only the generated **`index.html`** at [the game URL](https://bekus2.github.io/Tiny-AI-XO-107601/). The workflow configuration is in `.github/workflows/checks.yml`; the offline ZIP remains available. All runtime assets and the shared checkpoint are embedded. No database migrations or server secrets are necessary. Rebuild after source changes and verify the Pages deployment run and public URL after publishing. Keep personal checkpoint exports out of public commits unless you intend to share them; deployment does not upload or synchronize browser experience.
 
 For further development, use feature/fix/docs branches and reviewed pull requests against stable `main`, preserve checkpoint compatibility and document new measurements. Future work could teach explicit defensive alternatives, diversify opponents, add more evaluation positions and translate the interface. Changed rules or architecture require new compatibility and strength checks. See [HANDOFF](HANDOFF.md).
 
-The [license](LICENSE.txt) permits free educational/personal/noncommercial use, training, modification, forking and sharing with attribution. Other rights are reserved. A public repository is not a claim of an unrestricted OSI open-source license. Author: **Beck Sarbassov**; created 2026-10-27, updated 2026-11-05.
+The [license](LICENSE.txt) permits free educational/personal/noncommercial use, training, modification, forking and sharing with attribution. Other rights are reserved. A public repository is not a claim of an unrestricted OSI open-source license. Author: **Beck Sarbassov**; created 2026-10-27, updated 2026-11-15.
 
 ## Русский
 
@@ -119,7 +132,11 @@ The [license](LICENSE.txt) permits free educational/personal/noncommercial use, 
 
 Tiny AI XO 107601 — образовательная офлайн-игра **крестики-нолики 9×9** с небольшой нейросетью на обычном JavaScript. Цель — объяснять ИИ через увлекательную игру: наблюдать решения, завершать партии, видеть реальные обновления весов, сохранять свою модель и экспериментировать с обучением. Это игровая сеть, а не чатбот или универсальный ИИ.
 
-В поставку входит **частично обученная модель Beck Sarbassov с опытом 185 партий**. Новый браузер начинает с этого опыта. Уже сохранённая локальная модель имеет приоритет, в том числе модель после осознанного сброса до нуля. Можно продолжать обучение поставляемой сети либо экспортировать свой прогресс и начать со случайных весов. Расчёты выполняются на вашем устройстве; для игры не нужны интернет, аккаунт, ключи API или внешний ИИ.
+В поставку входит **частично обученная модель Beck Sarbassov с опытом 185 партий**. Новый браузер начинает с этого опыта. Уже сохранённая локальная модель имеет приоритет, в том числе модель после осознанного сброса до нуля. Можно продолжать обучение поставляемой сети либо экспортировать свой прогресс и начать со случайных весов. Расчёты выполняются на вашем устройстве; аккаунт, ключи API или внешний ИИ не нужны. Скачанная копия работает без интернета.
+
+### Играть онлайн
+
+Откройте **[Tiny AI XO 107601 в браузере](https://bekus2.github.io/Tiny-AI-XO-107601/)**. Скачивание и установка не требуются. При первом посещении без сохранённого опыта для этого адреса используется встроенная **модель после 185 партий**; следующие посещения продолжают сохранённую модель этого адреса. Для загрузки сайта нужен интернет; обучение и хранение выполняются на вашем устройстве, без облачной синхронизации.
 
 ### Скачать и начать играть
 
@@ -132,6 +149,15 @@ Tiny AI XO 107601 — образовательная офлайн-игра **к�
 Интерфейс сейчас русский, документация — на английском и русском. «Новая партия» отменяет незавершённую доску без обучения; «Остановить автоигру» останавливает самоигру, но уже начатое обновление завершится. «Загрузить мой ИИ из файла» переносит сохранённое состояние после подтверждения. «Удалить опыт и начать с нуля» осознанно заменяет локальную модель случайной сетью с нулевым опытом.
 
 Победа — **пять или больше подряд** по горизонтали, вертикали или любой диагонали. Пять–восемь — победа, девять — **суперпобеда**. Длинная линия может появиться одним ходом при соединении двух частей. Полная доска без выигрышной линии — ничья. Поддерживаются мышь, касания, Tab, Enter/Space и стрелки. Проценты в клетках обозначают предпочтения сети, **не вероятность победы**.
+
+### Продолжить свой накопленный опыт на сайте
+
+У скачанного `index.html` и HTTPS-сайта разные хранилища браузера. Публикация или открытие сайта не переносит и не удаляет опыт по прежнему адресу.
+
+1. Откройте локальную игру или адрес с вашим последним опытом и нажмите **«Скачать мой ИИ»**, чтобы сохранить JSON-чекпоинт.
+2. Откройте [сайт](https://bekus2.github.io/Tiny-AI-XO-107601/). Если там уже обучалась другая модель, перед заменой скачайте и её.
+3. Нажмите **«Загрузить мой ИИ из файла»**, выберите нужный чекпоинт и подтвердите замену. Импорт заменяет текущую модель, а не объединяет две истории.
+4. Проверьте счётчик опыта, продолжайте играть и регулярно скачивайте резервные копии. Исходный экспорт и опыт по прежнему адресу останутся доступными.
 
 ### Какой опыт накоплен и чему ИИ научился?
 
@@ -189,7 +215,7 @@ node --test tests/engine.test.cjs
 
 Структура: `web/` — исходники интерфейса, правил, модели, обучения и хранения; `model/` — метаданные и исходный чекпоинт; `index.html` — готовая автономная игра; `build_demo.py` — сборка без обучения; `tests/` и `tests.py` — проверки; `evaluation/` — воспроизводимая оценка силы; `verification.json` и `SHA256SUMS.txt` — результаты верификации и целостность; шесть корневых Markdown-документов — передача проекта, требования и история; `design/README.md` — принципы оформления.
 
-На статический хостинг достаточно загрузить **`index.html`**, UTF-8/HTTPS: ресурсы и модель встроены. Миграции БД, серверные секреты и сервис сборки не нужны. Публикация исходников в GitHub и размещение сайта — отдельные действия; README не утверждает, что GitHub Pages включён. После правок исходников пересобирайте HTML. Личные экспорты не добавляйте в публичные коммиты без намерения поделиться ими.
+Публикация GitHub Pages выполняется через **GitHub Actions из `main`**: на [адрес игры](https://bekus2.github.io/Tiny-AI-XO-107601/) размещается только сгенерированный **`index.html`**. Конфигурация workflow находится в `.github/workflows/checks.yml`; офлайн-ZIP остаётся доступным. Ресурсы и общий чекпоинт встроены, миграции БД и серверные секреты не нужны. После правок пересобирайте HTML, а после публикации проверяйте выполнение Pages workflow и публичный адрес. Личные экспорты не добавляйте в коммиты без намерения поделиться ими: размещение сайта не загружает и не синхронизирует опыт браузера.
 
 Для развития используйте ветки feature/fix/docs, проверку PR и стабильную `main`, сохраняйте совместимость опыта и документируйте новые измерения. Дальнейшие направления: обучение конкретным защитным альтернативам, разные соперники, новые проверки и перевод интерфейса. Изменение правил/архитектуры требует новых проверок. Инструкции разработчику — [HANDOFF](HANDOFF.md).
 
@@ -197,5 +223,5 @@ node --test tests/engine.test.cjs
 
 Автор: Beck Sarbassov  
 Дата создания: 2026-10-27  
-Последнее обновление: 2026-11-05  
+Последнее обновление: 2026-11-15  
 Авторские права: © Beck Sarbassov. Все права защищены.

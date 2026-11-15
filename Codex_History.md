@@ -1,5 +1,39 @@
 # Change history / История Tiny AI XO 107601
 
+## 2026-11-15 — v2.1.0 (GitHub Pages)
+
+### Summary / Краткое
+Added GitHub Pages deployment configuration and English/Russian links for playing in the browser. The offline ZIP and bundled 185-game checkpoint remain available.
+
+Добавлены конфигурация размещения GitHub Pages и ссылки на игру в браузере в английской и русской частях README. Офлайн-ZIP и встроенный опыт 185 партий сохранены.
+
+### Changed files / Измененные файлы
+- `.github/workflows/checks.yml`.
+- `README.md`, `HANDOFF.md`, `PROJECT_CONTEXT.md`, `TASK.md`, `AI_RULES.md`, `Codex_History.md`.
+
+### Added / Добавлено
+- The existing **Integrity and engine tests** workflow verifies the project, then deploys only generated `index.html` from `main` on push or manual dispatch from `main` in this repository.
+- Game address: [Tiny AI XO 107601](https://bekus2.github.io/Tiny-AI-XO-107601/).
+- Bilingual instructions for continuing personal experience through export/import and backing up any existing destination model before replacement.
+
+- Workflow **Integrity and engine tests** сначала проверяет проект, затем размещает только сгенерированный `index.html` из `main` при push или ручном запуске из `main` этого репозитория.
+- Адрес игры: [Tiny AI XO 107601](https://bekus2.github.io/Tiny-AI-XO-107601/).
+- Инструкции EN/RU по переносу личного опыта через экспорт/импорт и сохранению имеющейся модели назначения перед заменой.
+
+### Fixed / Исправлено
+- Replaced the outdated README statement that Pages was not configured with the deployment workflow and browser link.
+- Обновлено устаревшее описание отсутствия Pages в README: добавлены workflow размещения и ссылка на игру.
+
+### Security / Безопасность
+- Hosting publishes the generated game only. Learning remains local; no browser checkpoints are uploaded or synchronized automatically. Import remains a confirmed replacement, not a merge.
+- На хостинг отправляется только готовая игра. Обучение остаётся локальным; опыт браузера не загружается и не синхронизируется автоматически. Импорт остаётся подтверждаемой заменой, не объединением.
+
+### Notes / Примечания
+- File and HTTPS origins have separate storage. A first visit without saved state uses the bundled 185 games; saved experience at the website address takes priority. Keep original exports when transferring between addresses.
+- Deployment completion and public-site verification are separate from committing configuration; inspect the Pages workflow result and HTTPS site after publishing. This entry records configuration and documentation changes, not a new strength evaluation.
+- У файла и HTTPS-origin разное хранилище. Первый визит без сохранённых данных использует встроенные 185 игр; личный опыт по адресу сайта имеет приоритет. При переносе сохраняйте исходные экспорты.
+- Завершение размещения и проверка публичного сайта отличаются от коммита конфигурации; после публикации проверяйте результат Pages workflow и HTTPS-сайт. Запись описывает настройки и документацию, не новую оценку силы.
+
 ## 2026-11-05 — v2.1.0
 
 ### Summary / Краткое
@@ -138,5 +172,5 @@ The entries below retain the original historical record. v2.0.0 replaced the 3×
 
 Автор: Beck Sarbassov  
 Дата создания: 2026-10-27  
-Последнее обновление: 2026-11-05  
+Последнее обновление: 2026-11-15  
 Авторские права: © Beck Sarbassov. Все права защищены.

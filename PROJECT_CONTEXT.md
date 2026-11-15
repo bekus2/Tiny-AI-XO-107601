@@ -12,6 +12,8 @@
 
 **Startup and state.** Prefer a valid local checkpoint, even one with zero games. With no local state, load the bundled `model/checkpoint-185.json` embedded in `index.html`; no network fetch is needed. Invalid saved state must not trigger fallback or overwrite. Confirmed reset uses random zero-game state and saves it. Imports require confirmation. The published checkpoint retains format `tiny-ai-xo-online-v2` and its original internal version 2.0.0; the distribution version is 2.1.0.
 
+**Hosting and transfer.** GitHub Pages serves [the game](https://bekus2.github.io/Tiny-AI-XO-107601/) through the verified-then-deploy workflow in `.github/workflows/checks.yml`, publishing only generated `index.html` from `main`. The offline ZIP remains an alternative. The HTTPS origin and downloaded file have separate local storage; deployment does not migrate, reset or synchronize personal experience. A new origin uses the bundled 185; existing state at that origin stays authoritative. To continue another model, export it at the old address and manually import it on Pages after backing up any current Pages state. Import replaces the target model rather than merging histories.
+
 **Flow.** UI validates turn/move → terminal episode → Worker/shared learner → updated checkpoint → inference network and local persistence. New games and model replacement wait for learning/save completion. Worker failure uses cooperative computation between batches. Generation tokens cancel stale delayed moves; modal replacement pauses play. Self-play is opt-in and is off on opening.
 
 **Persistence and safety.** A checkpoint holds float32 little-endian/base64 weights and Adam arrays, RNG, step, counters, replay up to 2,048 and journal up to 200 games (12 visible). Optimizer/history are not inference parameters. IndexedDB writes atomically with revisions; localStorage is a weaker optimistic fallback; unavailable storage produces a RAM warning. No silent reset on quota, conflict or corruption. Export/import is the backup and transfer mechanism; active boards are excluded. Browser/origin storage can be cleared independently of files.
@@ -32,6 +34,8 @@ No server, admin roles, login, backend API, SQL, SMTP or personal-data form exis
 
 **Запуск и состояние.** Сохранённый корректный чекпоинт всегда имеет приоритет, даже с нулевым опытом. Только при отсутствии локальных данных загружается встроенный `model/checkpoint-185.json`, без сети. Повреждённый опыт не заменяется. Подтверждённый сброс создаёт и сохраняет случайную нулевую модель. Импорт с подтверждением. Формат опыта остаётся `tiny-ai-xo-online-v2`, внутренняя версия исходного JSON — 2.0.0; версия поставки — 2.1.0.
 
+**Размещение и перенос.** GitHub Pages размещает [игру](https://bekus2.github.io/Tiny-AI-XO-107601/) через `.github/workflows/checks.yml`: сначала проверка, затем публикация только сгенерированного `index.html` из `main`. Офлайн-ZIP остаётся альтернативой. У HTTPS-origin и скачанного файла разное локальное хранилище; размещение не переносит, не сбрасывает и не синхронизирует личный опыт. Новый origin получает встроенные 185 партий; сохранённое состояние этого origin имеет приоритет. Для продолжения другой модели экспортировать её по прежнему адресу и вручную импортировать на Pages, сначала сохранив текущую модель Pages. Импорт заменяет, а не объединяет истории.
+
 **Поток.** UI проверяет ход → полный эпизод передаётся Worker → общий learner меняет веса → новый чекпоинт становится игровой моделью и сохраняется. До конца обновления/записи новая игра и замена модели блокируются. При запрете Worker — кооперативный расчёт. Generation-токены отменяют старые отложенные действия; модальные окна ставят игру на паузу. Самоигра включается только пользователем.
 
 **Хранение и защита.** Веса/Adam float32 little-endian/base64, RNG, шаг, счётчики, до 2 048 позиций и 200 игр; видны 12. Оптимизатор и история не входят в параметры. IndexedDB атомарный с ревизиями; localStorage — менее строгий резерв; RAM — с предупреждением. Конфликт/квота/повреждение не сбрасывают опыт молча. Экспорт/импорт переносит состояние без текущей незавершённой доски. Браузерный origin может очищаться независимо от файлов.
@@ -42,5 +46,5 @@ No server, admin roles, login, backend API, SQL, SMTP or personal-data form exis
 
 Автор: Beck Sarbassov  
 Дата создания: 2026-10-27  
-Последнее обновление: 2026-11-05  
+Последнее обновление: 2026-11-15  
 Авторские права: © Beck Sarbassov. Все права защищены.

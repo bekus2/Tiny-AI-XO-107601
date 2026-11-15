@@ -1,21 +1,27 @@
 # Project / Проект: Tiny AI XO 107601
 # Author / Автор: Beck Sarbassov | Version: 2.1.0
-# Released / Updated: 2026-11-05
+# Released: 2026-11-05 | Updated: 2026-11-15
 # © Beck Sarbassov. All rights reserved / Все права защищены.
-# EN: Check committed offline build, integrity and engine behavior.
-# RU: Проверка автономной сборки, целостности и движка.
+# EN: Verify the standalone build and deploy the game to GitHub Pages from main.
+# RU: Проверка автономной сборки и публикация игры на GitHub Pages из main.
 name: Integrity and engine tests
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -24,3 +30,26 @@ jobs:
           python-version: '3.12'
       - name: Check standalone build, checksums and behavior
         run: python3 -B -S tests.py
+      - name: Stage the standalone game
+        if: github.repository == 'bekus2/Tiny-AI-XO-107601' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        run: install -D -m 644 index.html "$RUNNER_TEMP/tiny-ai-xo-pages/index.html"
+      - name: Upload GitHub Pages artifact
+        if: github.repository == 'bekus2/Tiny-AI-XO-107601' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ${{ runner.temp }}/tiny-ai-xo-pages
+
+  deploy:
+    needs: verify
+    if: github.repository == 'bekus2/Tiny-AI-XO-107601' && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
