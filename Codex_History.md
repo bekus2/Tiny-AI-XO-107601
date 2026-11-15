@@ -1,5 +1,36 @@
 # Change history / История Tiny AI XO 107601
 
+## 2026-11-15 — v2.1.0 (RU/EN interface / Интерфейс RU/EN)
+
+### Summary / Краткое
+Added Russian/English interface selection for the game while retaining the same project/model version and checkpoint format. The hosted URL and offline distribution remain the same.
+
+Добавлен выбор русского/английского языка игры с сохранением версии проекта/модели и формата опыта. Адрес сайта и офлайн-поставка прежние.
+
+### Changed files / Измененные файлы
+- `web/i18n.js`, `web/messages.js`, `web/app.js`, `web/index.template.html`, `web/app.css`, `build_demo.py`, `index.html`, `tests.py`, `tests/i18n.test.cjs`, `verification.json` and `SHA256SUMS.txt`.
+- `README.md`, `HANDOFF.md`, `PROJECT_CONTEXT.md`, `TASK.md`, `AI_RULES.md`, `Codex_History.md`, `START_HERE.txt`.
+
+### Added / Добавлено
+- RU/EN buttons and translated static/dynamic interface text.
+- Separate preference `tiny-ai-xo-language`: saved supported choice, otherwise first supported browser language, otherwise English. With preference storage blocked, the current choice lasts until page reload/close.
+- Кнопки RU/EN и переводы статических/динамических текстов.
+- Отдельная настройка `tiny-ai-xo-language`: сохранённый поддерживаемый выбор, иначе первый поддерживаемый язык браузера, иначе английский. При запрете хранения выбор действует до перезагрузки/закрытия страницы.
+
+### Fixed / Исправлено
+- Updated instructions that previously described a Russian-only interface; English quick-start controls now match the English labels.
+- Обновлены инструкции, ранее описывавшие только русский интерфейс; английские инструкции используют английские подписи кнопок.
+
+### Security and preservation / Безопасность и сохранение
+- Language selection is presentation-only. It retains the current board, pending moves, learning and local experience. The original 185-game checkpoint and serialization format remain unchanged; language is not part of model exports.
+- Переключение меняет только отображение. Сохраняются доска, отложенные ходы, обучение и личный опыт. Исходный чекпоинт 185 и формат сериализации прежние; язык не входит в экспорт модели.
+
+### Notes / Примечания
+- The browser test loaded the previous version's 186-game save, switched languages during a game, then confirmed that both the selected language and the next completed game survived reload. Both languages fit at 320 px. See `verification.json`.
+- Браузерная проверка загрузила сохранение на 186 партий из предыдущей версии. После переключения во время игры и ещё одной завершённой партии перезагрузка восстановила язык и опыт. Оба языка помещаются на ширине 320 px. Результаты записаны в `verification.json`.
+- This is a UI update, not additional model training or a new strength evaluation. Validate translated states, persistence/fallback and state preservation, then verify the Pages run and public site separately.
+- Это изменение интерфейса, не дополнительное обучение и не новая оценка силы. Проверять переведённые состояния, сохранение/резерв настройки и сохранность игры, затем отдельно результат Pages и публичный сайт.
+
 ## 2026-11-15 — v2.1.0 (GitHub Pages)
 
 ### Summary / Краткое

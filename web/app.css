@@ -1,7 +1,7 @@
 /*
  * Проект: Tiny AI XO 107601 | Файл: web/app.css
- * Автор: Beck Sarbassov | Версия: 2.0.0
- * Дата выпуска: 2026-10-27 | Последнее обновление: 2026-10-29
+ * Автор: Beck Sarbassov | Версия: 2.1.0
+ * Дата выпуска: 2026-10-27 | Последнее обновление: 2026-11-15
  * Авторские права: © Beck Sarbassov. Все права защищены.
  * EN: Responsive game and readable model panel. RU: Адаптивная игра и панель модели.
  */
@@ -136,3 +136,16 @@ dialog{background:var(--paper);color:var(--ink);border:1px solid var(--line);bor
 @media(min-width:1450px){.intro{padding:28px 0}.board{width:100%}}
 @media(max-width:900px){.game-layout{grid-template-columns:minmax(0,1.4fr) minmax(275px,1fr);gap:20px}.board{padding:8px;gap:4px}.actions{grid-template-columns:1fr 1fr}.actions .primary{grid-column:1/-1}.board-caption{font-size:11px}.board-caption span:last-child{white-space:nowrap}.cell .mark{font-size:clamp(21px,3.5vw,38px)}}
 @media(max-width:700px){.game-layout{display:block}.intro h1{font-size:32px;max-width:440px}.model-panel{margin-top:22px}.board{width:100%;max-width:500px;padding:8px;gap:4px}.cell .mark{font-size:clamp(21px,6vw,34px)}.cell-score{font-size:8px}.actions{grid-template-columns:1fr 1fr}.layer-diagram{max-width:340px;margin:auto}.game-history li{display:block}.game-history small{display:block;text-align:left;margin-top:4px}.brand{font-size:14px;gap:9px}.brand-symbol{font-size:20px;padding-right:9px}nav{gap:14px}nav a{font-size:12px}.board-caption{font-size:10px}.status{font-size:13px}.dialog-actions{flex-wrap:wrap}}
+
+/* EN: Keep language choices and translated labels usable at 320px.
+   RU: Языковые кнопки и переведённые подписи доступны от ширины 320px. */
+.header-controls{display:flex;align-items:center;gap:24px;min-width:0}
+.language-switch{display:flex;align-items:center;border:1px solid #bfc6bd;border-radius:8px;flex:none}
+.language-switch button{min-width:44px;min-height:44px;padding:7px 11px;background:transparent;color:var(--ink);border:0;font-size:13px;font-weight:650;border-radius:7px}
+.language-switch button[aria-pressed="true"]{background:var(--teal);color:#fff}
+.game-toolbar{flex-wrap:wrap}
+.status{min-width:0;overflow-wrap:anywhere}
+.scores{flex-wrap:wrap}
+.details-content p,.game-history li,dialog p{overflow-wrap:anywhere}
+.model-panel,.game-layout>section{min-width:0}
+@media(max-width:700px){header{flex-wrap:wrap;gap:0;padding-top:12px}.brand{flex-basis:100%}.header-controls{width:100%;justify-content:space-between;gap:12px}nav{gap:22px}nav a{min-height:44px;padding:13px 0 11px}.language-switch{margin:7px 0}.language-switch button{min-height:40px;min-width:44px}.board-caption{flex-wrap:wrap;row-gap:3px}.scores{gap:12px}.scores>span+span{padding-left:12px}.scores b{margin-left:5px}}

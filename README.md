@@ -22,19 +22,12 @@ Open **[Tiny AI XO 107601 in your browser](https://bekus2.github.io/Tiny-AI-XO-1
 1. Download the ZIP above, or choose **Code → Download ZIP** on GitHub.
 2. Extract the whole archive and open **`index.html`** in a modern browser with JavaScript enabled. No installation or build is required.
 3. Choose X or O and click an empty cell. X moves first. Finish a game to produce a learning result.
-4. Use **“ИИ играет сам”** to let the same network play both sides and learn from completed games. Self-play is off until you start it.
-5. Use **“Скачать мой ИИ”** to download your current experience as JSON before moving to another browser/device or starting a fresh experiment.
+4. Use **“Start self-play”** to let the same network play both sides and learn from completed games. Self-play is off until you start it.
+5. Use **“Export my AI”** to download your current experience as JSON before moving to another browser/device or starting a fresh experiment.
 
-The interface is currently in Russian; this guide and the project documentation are bilingual.
+Use the **RU / EN** buttons in the page header to switch the interface between Russian and English. A saved choice takes priority; otherwise the first supported browser language is used, with English as fallback. The language preference is saved separately from your AI experience. If browser storage for this preference is blocked, your choice remains until the current page is reloaded or closed. Switching languages keeps the current board, pending moves and learning progress.
 
-| Interface label | English meaning |
-|---|---|
-| Новая партия | New game; discards an unfinished board without training |
-| ИИ играет сам / Остановить автоигру | Start / stop self-play |
-| Оценки на поле / Скрыть оценки | Show / hide the network's move preferences |
-| Скачать мой ИИ | Export weights, optimizer state and experience to JSON |
-| Загрузить мой ИИ из файла | Import a checkpoint after confirmation |
-| Удалить опыт и начать с нуля | Explicitly replace local experience with a random zero-game model |
+**“New game”** discards an unfinished board without training. **“Show move scores”** displays move preferences; **“Delete experience and start from zero”** requires confirmation and replaces the current model with a random zero-game model. Export your experience first when you want to keep it.
 
 A continuous line of **five or more** horizontally, vertically or diagonally wins immediately. Five–eight is a win; nine is a **super win**. A single move can join two shorter chains. A full board without a winning line is a draw. Use mouse, touch, Tab, Enter/Space or arrow navigation. Stopping self-play discards the unfinished game; an update already running finishes. Percentages shown on cells are preferences, **not probabilities of winning**.
 
@@ -42,9 +35,9 @@ A continuous line of **five or more** horizontally, vertically or diagonally win
 
 The downloaded `index.html` and the HTTPS website have separate browser storage. Publishing or opening the website does not transfer or erase the experience at your old address.
 
-1. Open the local game or address where your latest experience is saved and click **“Скачать мой ИИ”** to export its JSON checkpoint.
+1. Open the local game or address where your latest experience is saved and click **“Export my AI”** (**«Скачать мой ИИ»** in Russian) to save its JSON checkpoint.
 2. Open the [website](https://bekus2.github.io/Tiny-AI-XO-107601/). If you already trained a model there, export that model too before replacing it.
-3. Click **“Загрузить мой ИИ из файла”**, choose the checkpoint you want to continue and confirm the replacement. Import replaces the current model; it does not merge two histories.
+3. Click **“Import my AI”**, choose the checkpoint you want to continue and confirm the replacement. Import replaces the current model; it does not merge two histories.
 4. Check the experience counter, continue playing and export backups regularly. Your original export and the experience at the old address remain available.
 
 ### What has the included AI learned?
@@ -111,6 +104,7 @@ Set `XO_NODE` to your Node executable if it is not on PATH. On Windows, use `py 
 | `index.html` | Ready-to-play standalone game with the embedded 185-game checkpoint |
 | `web/` | Interface, rules, neural network, learning, persistence and Worker source |
 | `web/bootstrap.js` | Validated startup selection that preserves existing local experience |
+| `web/i18n.js`, `web/messages.js` | RU/EN selection, static translations and dynamic messages |
 | `model/manifest.json` | Architecture and release/checkpoint metadata |
 | `model/checkpoint-185.json` | Original partially trained state, also available for manual import |
 | `build_demo.py` | Embeds sources, styles and the checkpoint; refreshes checksums; never trains |
@@ -122,7 +116,7 @@ Set `XO_NODE` to your Node executable if it is not on PATH. On Windows, use `py 
 
 GitHub Pages deployment uses **GitHub Actions from `main`**, publishing only the generated **`index.html`** at [the game URL](https://bekus2.github.io/Tiny-AI-XO-107601/). The workflow configuration is in `.github/workflows/checks.yml`; the offline ZIP remains available. All runtime assets and the shared checkpoint are embedded. No database migrations or server secrets are necessary. Rebuild after source changes and verify the Pages deployment run and public URL after publishing. Keep personal checkpoint exports out of public commits unless you intend to share them; deployment does not upload or synchronize browser experience.
 
-For further development, use feature/fix/docs branches and reviewed pull requests against stable `main`, preserve checkpoint compatibility and document new measurements. Future work could teach explicit defensive alternatives, diversify opponents, add more evaluation positions and translate the interface. Changed rules or architecture require new compatibility and strength checks. See [HANDOFF](HANDOFF.md).
+For further development, use feature/fix/docs branches and reviewed pull requests against stable `main`, preserve checkpoint compatibility and document new measurements. Future work could teach explicit defensive alternatives, diversify opponents, add more evaluation positions and support additional interface languages. Changed rules or architecture require new compatibility and strength checks. See [HANDOFF](HANDOFF.md).
 
 The [license](LICENSE.txt) permits free educational/personal/noncommercial use, training, modification, forking and sharing with attribution. Other rights are reserved. A public repository is not a claim of an unrestricted OSI open-source license. Author: **Beck Sarbassov**; created 2026-10-27, updated 2026-11-15.
 
@@ -146,7 +140,9 @@ Tiny AI XO 107601 — образовательная офлайн-игра **к�
 4. Кнопка **«ИИ играет сам»** запускает одну сеть за обе стороны и обучение по исходам. Автоигра сама при открытии не включается.
 5. **«Скачать мой ИИ»** сохраняет ваш опыт в JSON перед переносом на другое устройство или новым экспериментом.
 
-Интерфейс сейчас русский, документация — на английском и русском. «Новая партия» отменяет незавершённую доску без обучения; «Остановить автоигру» останавливает самоигру, но уже начатое обновление завершится. «Загрузить мой ИИ из файла» переносит сохранённое состояние после подтверждения. «Удалить опыт и начать с нуля» осознанно заменяет локальную модель случайной сетью с нулевым опытом.
+Кнопки **RU / EN** вверху страницы переключают интерфейс между русским и английским. Сохранённый выбор имеет приоритет; иначе используется первый поддерживаемый язык браузера, а если его нет — английский. Язык сохраняется отдельно от опыта ИИ. При запрете хранения этой настройки выбор действует до перезагрузки или закрытия текущей страницы. Смена языка сохраняет доску, отложенные ходы и прогресс обучения.
+
+«Новая партия» отменяет незавершённую доску без обучения; «Остановить автоигру» останавливает самоигру, но уже начатое обновление завершится. «Загрузить мой ИИ из файла» переносит сохранённое состояние после подтверждения. «Удалить опыт и начать с нуля» осознанно заменяет локальную модель случайной сетью с нулевым опытом.
 
 Победа — **пять или больше подряд** по горизонтали, вертикали или любой диагонали. Пять–восемь — победа, девять — **суперпобеда**. Длинная линия может появиться одним ходом при соединении двух частей. Полная доска без выигрышной линии — ничья. Поддерживаются мышь, касания, Tab, Enter/Space и стрелки. Проценты в клетках обозначают предпочтения сети, **не вероятность победы**.
 
@@ -217,7 +213,7 @@ node --test tests/engine.test.cjs
 
 Публикация GitHub Pages выполняется через **GitHub Actions из `main`**: на [адрес игры](https://bekus2.github.io/Tiny-AI-XO-107601/) размещается только сгенерированный **`index.html`**. Конфигурация workflow находится в `.github/workflows/checks.yml`; офлайн-ZIP остаётся доступным. Ресурсы и общий чекпоинт встроены, миграции БД и серверные секреты не нужны. После правок пересобирайте HTML, а после публикации проверяйте выполнение Pages workflow и публичный адрес. Личные экспорты не добавляйте в коммиты без намерения поделиться ими: размещение сайта не загружает и не синхронизирует опыт браузера.
 
-Для развития используйте ветки feature/fix/docs, проверку PR и стабильную `main`, сохраняйте совместимость опыта и документируйте новые измерения. Дальнейшие направления: обучение конкретным защитным альтернативам, разные соперники, новые проверки и перевод интерфейса. Изменение правил/архитектуры требует новых проверок. Инструкции разработчику — [HANDOFF](HANDOFF.md).
+Для развития используйте ветки feature/fix/docs, проверку PR и стабильную `main`, сохраняйте совместимость опыта и документируйте новые измерения. Дальнейшие направления: обучение конкретным защитным альтернативам, разные соперники, новые проверки и дополнительные языки интерфейса. Изменение правил/архитектуры требует новых проверок. Инструкции разработчику — [HANDOFF](HANDOFF.md).
 
 [Лицензия](LICENSE.txt) разрешает бесплатное образовательное/личное/некоммерческое использование, обучение, изменение, форки и распространение с сохранением авторства. Остальные права сохраняются. Публичность репозитория не означает неограниченную открытую лицензию OSI.
 

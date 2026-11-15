@@ -55,6 +55,20 @@
     "file_protocol_retested": false,
     "note": "The original test tab was cleaned up by the browser session; reopening the same test origin recovered its 191-game state. No browser-profile or live-user storage access."
   },
+  "language_update": {
+    "date": "2026-11-15",
+    "automated_language_tests": 4,
+    "browser": "Computer Use in-app browser at an isolated localhost origin",
+    "widths_px": [320, 1280],
+    "both_languages_fit_at_320": true,
+    "pre_update_checkpoint_loaded": {"games": 186, "weight_updates": 1116},
+    "language_switch_preserved_current_board_and_checkpoint": true,
+    "cancelled_english_reset_preserved_current_board_and_checkpoint": true,
+    "post_training_translated_result": {"games": 187, "weight_updates": 1122},
+    "reload_restored_english_and_post_training_checkpoint": true,
+    "console_errors_and_warnings": [],
+    "test_experience_isolated": true
+  },
   "prior_browser_validation": {
     "release": "2.0.0",
     "date": "2026-10-29",
@@ -115,7 +129,7 @@
     "The 185-game model remains tactically weak; more self-play does not guarantee improvement.",
     "Replay is limited to 2048 positions and history to 200 games.",
     "Browser/origin storage can be cleared; users should export checkpoints.",
-    "Only narrow in-app-browser startup/self-play/persistence were retested for 2.1.0; older broad browser checks are explicitly historical.",
+    "The current language update was checked in the in-app browser. Earlier browser results are recorded under their respective dates.",
     "Safari, Firefox and Edge have not been separately validated.",
     "An unfinished board is not part of checkpoint exports."
   ],
