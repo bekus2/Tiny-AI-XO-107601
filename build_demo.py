@@ -2,7 +2,7 @@
 """
 Проект: Tiny AI XO 107601 | Файл: build_demo.py
 Автор: Beck Sarbassov | Версия: 2.1.0
-Дата выпуска: 2026-10-29 | Последнее обновление: 2026-11-05
+Дата выпуска: 2026-10-29 | Последнее обновление: 2026-11-15
 Авторские права: © Beck Sarbassov. Все права защищены.
 EN: Embed the published checkpoint without training. RU: Сборка с опубликованным опытом без обучения.
 """
@@ -32,11 +32,11 @@ def build():
     checkpoint_json = json.dumps(checkpoint, ensure_ascii=True, separators=(",", ":"))
     checkpoint_json = checkpoint_json.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
     sources = {name: (ROOT / "web" / name).read_text(encoding="utf-8")
-               for name in ("core.js", "neural.js", "learner.js", "bootstrap.js", "storage.js", "client.js", "app.js", "worker.js")}
+               for name in ("core.js", "neural.js", "learner.js", "bootstrap.js", "storage.js", "client.js", "messages.js", "i18n.js", "app.js", "worker.js")}
     replacements = {"__CSS__": (ROOT / "web/app.css").read_text(encoding="utf-8"),
                     "__BUNDLED_CHECKPOINT__": checkpoint_json,
                     "__WORKER_SOURCE__": "\n".join(sources[name] for name in ("core.js", "neural.js", "learner.js", "worker.js"))}
-    for name in ("core", "neural", "learner", "bootstrap", "storage", "client", "app"):
+    for name in ("core", "neural", "learner", "bootstrap", "storage", "client", "messages", "i18n", "app"):
         replacements[f"__{name.upper()}_JS__"] = sources[f"{name}.js"]
     html = (ROOT / "web/index.template.html").read_text(encoding="utf-8")
     for token, value in replacements.items():

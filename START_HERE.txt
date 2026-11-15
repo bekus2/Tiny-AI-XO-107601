@@ -1,6 +1,6 @@
 Tiny AI XO 107601 — v2.1.0
 Author / Автор: Beck Sarbassov
-Created / Создано: 2026-10-27 | Updated / Обновлено: 2026-11-05
+Created / Создано: 2026-10-27 | Updated / Обновлено: 2026-11-15
 © Beck Sarbassov. All rights reserved / Все права защищены.
 
 ENGLISH
@@ -8,16 +8,19 @@ ENGLISH
 2. New browsers start with the shared 185-game model. Existing local experience
    takes priority. Choose X/O, place marks, complete games and continue learning.
 3. Five or more in a line wins; nine is a super win.
-4. “ИИ играет сам” starts self-play; press again to stop.
-5. “Скачать мой ИИ” exports your progress. Save it before reset or transfer.
-6. “Загрузить мой ИИ из файла” imports a JSON checkpoint after confirmation.
+4. “Start self-play” starts self-play; press again to stop.
+5. “Export my AI” exports your progress. Save it before reset or transfer.
+6. “Import my AI” imports a JSON checkpoint after confirmation.
    Import model/checkpoint-185.json to restore the distributed starting model.
 7. A confirmed reset starts a random zero-game model; export first.
 
 This is educational AI, not an expert player. It improved against random moves
 but still misses decisive blocks. Counters measure experience, not intelligence.
 Internet, Python, Node, an account and an API key are not needed for play.
-The interface is Russian; README.md explains controls in English and Russian.
+Use RU / EN at the top to switch languages without restarting the game.
+A saved choice wins; otherwise the first supported browser language is used,
+with English as fallback. The preference is separate from AI experience; if
+its storage is blocked, it lasts until the current page is reloaded or closed.
 Learning stays in this browser; storage may be cleared. Export regularly.
 
 РУССКИЙ
@@ -30,6 +33,11 @@ Learning stays in this browser; storage may be cleared. Export regularly.
 6. «Загрузить мой ИИ из файла» импортирует JSON после подтверждения.
    model/checkpoint-185.json возвращает модель из поставки.
 7. Подтверждённый сброс создаёт случайную сеть с нулевым опытом.
+
+Кнопки RU / EN вверху меняют язык без перезапуска игры. Сохранённый выбор
+важнее языка браузера; иначе используется первый поддерживаемый язык браузера,
+затем английский. Настройка отдельна от опыта; при запрете её хранения она
+действует до перезагрузки или закрытия текущей страницы.
 
 Это образовательный ИИ, не эксперт. Он стал сильнее против случайных ходов,
 но по-прежнему пропускает решающие блокировки. Счётчики — опыт, не интеллект.
