@@ -85,7 +85,7 @@
       auto?t("runtime.status.auto",{player:R.turn(board)===1?"X":"O"}):thinking?t("runtime.status.thinking"):t("runtime.status.yourTurn");
     for(const id of ["new-game","choose-x","choose-o","toggle-scores"])$(id).disabled=!ready||busy||blocked;
     $("auto-play").disabled=!ready||blocked;$("auto-play").textContent=t(auto?"runtime.auto.stop":"runtime.auto.start");$("auto-play").setAttribute("aria-pressed",String(auto));
-    for(const id of ["export-model","import-model","reset-model"])$(id).disabled=busy||(!ready&&!blocked);
+    for(const id of ["export-model","import-model","reset-model","restore-model"])$(id).disabled=busy||(!ready&&!blocked);
     $("toggle-scores").setAttribute("aria-pressed",String(showScores));$("toggle-scores").textContent=t(showScores?"runtime.scores.hide":"runtime.scores.show");
     $("move-count").textContent=t("runtime.moves",{moves:moves.length});
     const top=$("top-moves");top.replaceChildren();
@@ -101,7 +101,7 @@
   function newGame(side=human){if(!ready||busy||blocked||dialogPaused)return;cancel();human=side;board=Array(81).fill(0);moves=[];last=-1;completed=false;render();schedule();}
   function schedule(){if(!ready||busy||blocked||dialogPaused||R.outcome(board).done||(!auto&&R.turn(board)===human))return;
     const token=generation;timer=setTimeout(()=>{timer=null;if(token!==generation||busy||blocked)return;
-      const exploration=Math.max(.05,.22/Math.sqrt(1+checkpoint.stats.games/40));const chosen=network.select(board,exploration);
+      const exploration=Math.max(.05,.22/Math.sqrt(1+checkpoint.stats.games/40));const strongMode=!auto&&$("strong-mode").checked;const chosen=strongMode?XOTactics.choose(board,network.policy(board)):network.select(board,exploration);
       place(chosen.move);},auto?65:260);
   }
   function humanMove(i){if(!ready||busy||blocked||auto||completed||R.turn(board)!==human||board[i]!==0)return;place(i);}
@@ -137,6 +137,7 @@
       renderDialog();$("confirm-dialog").showModal();
     }catch(error){message("runtime.notice.importFailed",true,{},error);resumeDialog();}
   });
+  $("restore-model").addEventListener("click",()=>{pauseDialog();imported=JSON.parse($("bundled-checkpoint").textContent);new XOLearning.Learner(imported);confirmAction="import";importFilename="checkpoint-318.json";renderDialog();$("confirm-dialog").showModal();});
   $("reset-model").addEventListener("click",()=>{pauseDialog();confirmAction="reset";renderDialog();$("confirm-dialog").showModal();});
   $("confirm-cancel").addEventListener("click",()=>{$("confirm-dialog").close();imported=null;resumeDialog();});
   $("confirm-dialog").addEventListener("cancel",()=>{imported=null;resumeDialog();});

@@ -101,23 +101,23 @@ test('checkpoint validation rejects occupied replay moves and illegal history',a
  assert.throws(()=>new L.Learner({...s,replay:[{state:'X'+'.'.repeat(80),action:0,reward:1}]}));
  assert.throws(()=>new L.Learner({...s,history:[{...win,moves:[0],length:5,super:false}]}));
 });
-test('published checkpoint is the exact 185-game export and contains no previous model artifacts',()=>{
+test('published checkpoint is the exact Sites 318-game export and contains no previous model artifacts',()=>{
  const root=path.resolve(__dirname,'..'),m=JSON.parse(fs.readFileSync(path.join(root,'model/manifest.json'),'utf8'));
- assert.equal(m.pretrained,true);assert.equal(m.preliminary_training_performed,false);assert.equal(m.starting_games,185);assert.equal(m.parameter_count,N.COUNT);
+ assert.equal(m.pretrained,true);assert.equal(m.preliminary_training_performed,false);assert.equal(m.starting_games,318);assert.equal(m.parameter_count,N.COUNT);
  const bytes=fs.readFileSync(path.join(root,m.bundled_checkpoint.path));
  const digest=require('node:crypto').createHash('sha256').update(bytes).digest('hex');
- assert.equal(digest,'404d3e64e49f2aaf00ca3a5847497159ea7b02e5a80e17689eb68e3ee17811b7');
+ assert.equal(digest,'eb1d3df7e1fd1a1d6dd5db890cf79959da604e8f7e2b7289ff11b99a2a190863');
  assert.equal(digest,m.bundled_checkpoint.sha256);
  const a=new L.Learner(JSON.parse(bytes.toString('utf8')));
- assert.equal(a.stats.games,185);assert.equal(a.stats.selfGames,183);assert.equal(a.stats.humanGames,2);
- assert.equal(a.optimizer.step,1110);assert.equal(a.stats.examples,8880);
- assert.equal(a.replay.length,2048);assert.equal(a.history.length,185);
+ assert.equal(a.stats.games,318);assert.equal(a.stats.selfGames,316);assert.equal(a.stats.humanGames,2);
+ assert.equal(a.optimizer.step,1908);assert.equal(a.stats.examples,15264);
+ assert.equal(a.replay.length,2048);assert.equal(a.history.length,200);
  for(const file of ['legacy','model/weights.f32','model/positions.json','tiny_xo.py','train.py'])assert.equal(fs.existsSync(path.join(root,file)),false);
 });
-const bundledText=()=>fs.readFileSync(path.join(__dirname,'../model/checkpoint-185.json'),'utf8');
+const bundledText=()=>fs.readFileSync(path.join(__dirname,'../model/checkpoint-318.json'),'utf8');
 test('fresh startup uses all bundled weights, optimizer state and remembered experience',()=>{
  const startup=XOBootstrap.resolve(null,bundledText);
- assert.equal(startup.source,'bundled');assert.equal(startup.learner.stats.games,185);
+ assert.equal(startup.source,'bundled');assert.equal(startup.learner.stats.games,318);
  assert.deepEqual(startup.learner.snapshot(),JSON.parse(bundledText()));
 });
 test('personal experience wins without even reading the bundled model',async()=>{

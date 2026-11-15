@@ -9,7 +9,7 @@ EN: Offline online-learning game. RU: Офлайн-игра с обучение�
 <html lang="ru">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Tiny AI XO 107601: крестики-нолики 9×9. Учебная нейросеть с опытом 185 партий продолжает обучение в браузере. Играйте, исследуйте и сохраняйте свою копию." data-i18n-content="page.description">
+  <meta name="description" content="Tiny AI XO 107601: крестики-нолики 9×9. Учебная нейросеть с опытом 318 партий продолжает обучение в браузере. Играйте, исследуйте и сохраняйте свою копию." data-i18n-content="page.description">
   <meta name="author" content="Beck Sarbassov"><meta name="theme-color" content="#155e54">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; worker-src blob:; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta property="og:title" content="Tiny AI XO 107601 — играй и обучай свой ИИ" data-i18n-content="page.ogTitle"><meta property="og:description" content="9×9. Пять подряд — победа. Девять — суперпобеда. Обучение из ваших партий, без облака." data-i18n-content="page.ogDescription"><meta property="og:type" content="website">
@@ -21,7 +21,7 @@ EN: Offline online-learning game. RU: Офлайн-игра с обучение�
 <div class="shell">
   <header><a class="brand" href="#play"><span class="brand-symbol" aria-hidden="true"><span class="cross">X</span><span class="nought">O</span></span>Tiny AI XO 107601</a><div class="header-controls"><nav aria-label="Навигация" data-i18n-aria-label="nav.label"><a href="#play" data-i18n="nav.play">Играть</a><a href="#learning-details" id="about-link" data-i18n="nav.learn">Обучение</a></nav><div class="language-switch" role="group" aria-label="Язык интерфейса" data-i18n-aria-label="language.label"><button id="lang-ru" type="button" lang="ru" aria-label="Русский" aria-pressed="true">RU</button><button id="lang-en" type="button" lang="en" aria-label="English" aria-pressed="false">EN</button></div></div></header>
   <main id="play">
-    <div class="intro"><h1 data-i18n="intro.title">Сыграй. Научи. Попробуй снова.</h1><p data-i18n="intro.description">Исследуй ИИ через игру: начни с опыта 185 партий и обучай свою копию дальше.</p></div>
+    <div class="intro"><h1 data-i18n="intro.title">Сыграй. Научи. Попробуй снова.</h1><p data-i18n="intro.description">Исследуй ИИ через игру: начни с опыта 318 партий и обучай свою копию дальше.</p></div>
     <p class="notice" id="notice" role="alert" hidden></p><noscript><p class="error">Для игры нужен JavaScript. Интернет и установка программ не требуются. / JavaScript is required. No installation is needed; the downloaded game works offline.</p></noscript>
     <div class="game-layout">
       <section aria-label="Крестики-нолики 9 на 9" data-i18n-aria-label="board.section">
@@ -29,6 +29,7 @@ EN: Offline online-learning game. RU: Офлайн-игра с обучение�
         <div class="board-caption"><span data-i18n="board.caption">5–8 подряд — победа · 9 — суперпобеда</span><span id="move-count">Ход 0 / 81</span></div>
         <div id="board" class="board" role="group" aria-label="Поле 9 на 9. Побеждает линия от пяти фигур." data-i18n-aria-label="board.label"></div>
         <div class="actions"><button class="primary" id="new-game" type="button" data-i18n="controls.new">Новая партия</button><button class="secondary" id="auto-play" type="button" aria-pressed="false">ИИ играет сам</button><button class="secondary" id="toggle-scores" type="button" aria-pressed="false">Оценки на поле</button></div>
+        <label class="rules-note"><input id="strong-mode" type="checkbox" checked> <span data-i18n="controls.strong">Сильный режим: нейросеть и тактический поиск</span></label>
         <div class="scores" aria-label="Накопленные результаты модели против людей" data-i18n-aria-label="scores.label"><span><span data-i18n="scores.human">Человек</span> <b id="score-human" class="cross">0</b></span><span><span data-i18n="scores.draws">Ничьи</span> <b id="score-draw">0</b></span><span><span data-i18n="scores.ai">ИИ</span> <b id="score-ai" class="nought">0</b></span></div>
         <p class="rules-note" data-i18n="board.rules">Пять или больше в непрерывной линии: по горизонтали, вертикали или диагонали. X начинает.</p>
       </section>
@@ -36,25 +37,26 @@ EN: Offline online-learning game. RU: Офлайн-игра с обучение�
         <h2 id="model-title" data-i18n="model.title">Сеть учится с тобой</h2><p class="architecture">81 → 256 → 256 → 81</p>
         <div class="layer-diagram" aria-label="81 вход, два скрытых слоя по 256 нейронов и 81 выход" data-i18n-aria-label="model.diagram"><span><b>81</b><small data-i18n="model.cells">клетка</small></span><span><b>256</b><small data-i18n="model.neurons">нейронов</small></span><span><b>256</b><small data-i18n="model.neurons">нейронов</small></span><span><b>81</b><small data-i18n="model.moves">ход</small></span></div>
         <div class="model-bottom"><div><strong>107 601</strong> <span data-i18n="model.parameters">параметр</span></div><p data-i18n="model.hidden">512 скрытых нейронов · 2 слоя</p></div>
-        <p id="learning-level" class="learning-level">Начинающая сеть</p><p class="muted" data-i18n="model.experience">В поставке — опыт 185 партий. ИИ лучше случайной игры, но часто пропускает угрозы. Больше опыта не гарантирует победу.</p>
+        <p id="learning-level" class="learning-level">Начинающая сеть</p><p class="muted" data-i18n="model.experience">В поставке — опыт 318 партий. ИИ лучше случайной игры, но часто пропускает угрозы. Больше опыта не гарантирует победу.</p>
         <div class="experience-metrics"><div><strong id="games-count">0</strong><span data-i18n="model.games">партий опыта</span></div><div><strong id="updates-count">0</strong><span data-i18n="model.updates">обновлений весов</span></div></div>
         <p class="memory-line"><span data-i18n="model.memory">Память позиций</span> <b id="memory-count">0 / 2 048</b></p>
         <p id="learning-note" class="learning-note" role="status" aria-live="polite">Загружаю сохранённый или учебный опыт…</p>
         <p id="storage-state" class="storage-state">Проверяю сохранение…</p>
         <button id="retry-save" class="secondary" type="button" hidden data-i18n="controls.retry">Повторить сохранение</button>
-        <div class="transfer-actions"><button id="export-model" class="secondary" type="button" data-i18n="controls.export">Скачать мой ИИ</button><button id="import-model" class="quiet-button" type="button" data-i18n="controls.import">Загрузить мой ИИ из файла</button><input id="import-file" type="file" accept=".json,application/json" hidden aria-label="Файл опыта ИИ" data-i18n-aria-label="controls.file"></div>
+        <div class="transfer-actions"><button id="export-model" class="secondary" type="button" data-i18n="controls.export">Скачать мой ИИ</button><button id="import-model" class="quiet-button" type="button" data-i18n="controls.import">Загрузить мой ИИ из файла</button><button class="secondary" id="restore-model" type="button" data-i18n="controls.restore">Начать с общей модели</button><input id="import-file" type="file" accept=".json,application/json" hidden aria-label="Файл опыта ИИ" data-i18n-aria-label="controls.file"></div>
         <details class="policy-details"><summary data-i18n="model.preferences">Какие ходы предпочитает сеть</summary><p id="policy-label" class="muted"></p><div id="top-moves"></div></details>
       </aside>
     </div>
     <div class="details-row"><details id="learning-details"><summary data-i18n="details.summary">Как сохраняется и растёт опыт</summary><div class="details-content">
       <h2 data-i18n="details.title">Каждая законченная партия — новый опыт</h2>
       <p data-i18n="details.reward">Сеть получает награду +1 за ходы победителя и −1 за ходы проигравшего. По этому сигналу меняются настоящие веса всех трёх соединяющих слоёв. У поздних ходов больше вес. При ничьей награда 0: исход запоминается, веса не меняются.</p>
+      <p data-i18n="details.strong">Сильный режим добавляет ограниченный тактический поиск к оценкам нейросети. Его можно выключить для сравнения. Самоигра использует только нейросеть. Общая стартовая модель фиксирована; партии разных посетителей не объединяются.</p>
       <p data-i18n="details.memory">Сохраняются веса, состояние обучения, последние 200 партий и до 2048 позиций. Старые позиции постепенно уступают место новым, а накопленные изменения остаются в весах. Это ограниченная память, а не бесконечная база всех комбинаций.</p>
       <p data-i18n="details.updates">После партии выполняется шесть небольших обновлений по восемь примеров из нового и прежнего опыта. Повороты и отражения доски помогают переносить выученное на похожие ситуации. Незавершённая партия не обучает. Учебные веса получены с нуля в этой игре; сторонних моделей и внешнего ИИ нет.</p>
       <p data-i18n="details.selfplay">«ИИ играет сам» запускает партии и обучение прямо на поле. Нажмите снова, чтобы остановить; незавершённая партия сбросится. Автоигра сама при открытии не включается. В начале сеть слаба; опыт может помогать, но отдельные партии не гарантируют улучшение и сильную стратегию.</p>
-      <p data-i18n="details.storage">Опыт хранится только в этом браузере для этого адреса. В новом браузере загружается учебная копия с опытом 185 партий. Сохранённый личный опыт всегда имеет приоритет. Очистка данных браузера удаляет личный прогресс. Чтобы перенести её, скачайте свой ИИ и загрузите файл в другом месте. При запрете сохранения появится предупреждение; вкладку можно использовать с ручным экспортом.</p>
+      <p data-i18n="details.storage">Опыт хранится только в этом браузере для этого адреса. В новом браузере загружается учебная копия с опытом 318 партий. Сохранённый личный опыт всегда имеет приоритет. Очистка данных браузера удаляет личный прогресс. Чтобы перенести её, скачайте свой ИИ и загрузите файл в другом месте. При запрете сохранения появится предупреждение; вкладку можно использовать с ручным экспортом.</p>
       <p><span data-i18n="details.selfCount">Сыграно с собой:</span> <b id="self-count">0</b>. <span data-i18n="details.exampleCount">Использовано обучающих примеров:</span> <b id="example-count">0</b>. <span data-i18n="details.metricsLimit">Эти числа описывают опыт, а не качество игры. Непобедимость для 9×9 не заявляется.</span></p>
-      <p data-i18n="details.reset">Хотите сравнить с необученной сетью? Сначала скачайте свой ИИ, затем подтвердите «Удалить опыт и начать с нуля». Для возврата к учебному опыту импортируйте model/checkpoint-185.json из проекта. Начальные две игры с человеком и их результаты входят в общий счёт модели.</p>
+      <p data-i18n="details.reset">Хотите сравнить с необученной сетью? Сначала скачайте свой ИИ, затем подтвердите «Удалить опыт и начать с нуля». Для возврата к учебному опыту импортируйте model/checkpoint-318.json из проекта. Начальные две игры с человеком и их результаты входят в общий счёт модели.</p>
       <h3 data-i18n="details.recent">Последние партии</h3><ul id="history" class="game-history" aria-label="Журнал исходов" data-i18n-aria-label="details.history"></ul>
       <button class="quiet-button danger" id="reset-model" type="button" data-i18n="controls.reset">Удалить опыт и начать с нуля</button>
     </div></details></div>
@@ -64,5 +66,5 @@ EN: Offline online-learning game. RU: Офлайн-игра с обучение�
 <dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text"><h2 id="confirm-title"></h2><p id="confirm-text"></p><div class="dialog-actions"><button id="confirm-cancel" type="button" class="secondary" data-i18n="controls.cancel">Отмена</button><button id="confirm-yes" type="button" class="primary" data-i18n="controls.confirm">Подтвердить замену</button></div></dialog>
 <script type="application/json" id="bundled-checkpoint">__BUNDLED_CHECKPOINT__</script>
 <script type="text/plain" id="worker-source">__WORKER_SOURCE__</script>
-<script>__CORE_JS__</script><script>__NEURAL_JS__</script><script>__LEARNER_JS__</script><script>__BOOTSTRAP_JS__</script><script>__STORAGE_JS__</script><script>__CLIENT_JS__</script><script>__MESSAGES_JS__</script><script>__I18N_JS__</script><script>__APP_JS__</script>
+<script>__CORE_JS__</script><script>__NEURAL_JS__</script><script>__TACTICS_JS__</script><script>__LEARNER_JS__</script><script>__BOOTSTRAP_JS__</script><script>__STORAGE_JS__</script><script>__CLIENT_JS__</script><script>__MESSAGES_JS__</script><script>__I18N_JS__</script><script>__APP_JS__</script>
 </body></html>

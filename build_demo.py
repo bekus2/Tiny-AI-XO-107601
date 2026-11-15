@@ -32,11 +32,11 @@ def build():
     checkpoint_json = json.dumps(checkpoint, ensure_ascii=True, separators=(",", ":"))
     checkpoint_json = checkpoint_json.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
     sources = {name: (ROOT / "web" / name).read_text(encoding="utf-8")
-               for name in ("core.js", "neural.js", "learner.js", "bootstrap.js", "storage.js", "client.js", "messages.js", "i18n.js", "app.js", "worker.js")}
+               for name in ("core.js", "neural.js", "tactics.js", "learner.js", "bootstrap.js", "storage.js", "client.js", "messages.js", "i18n.js", "app.js", "worker.js")}
     replacements = {"__CSS__": (ROOT / "web/app.css").read_text(encoding="utf-8"),
                     "__BUNDLED_CHECKPOINT__": checkpoint_json,
                     "__WORKER_SOURCE__": "\n".join(sources[name] for name in ("core.js", "neural.js", "learner.js", "worker.js"))}
-    for name in ("core", "neural", "learner", "bootstrap", "storage", "client", "messages", "i18n", "app"):
+    for name in ("core", "neural", "tactics", "learner", "bootstrap", "storage", "client", "messages", "i18n", "app"):
         replacements[f"__{name.upper()}_JS__"] = sources[f"{name}.js"]
     html = (ROOT / "web/index.template.html").read_text(encoding="utf-8")
     for token, value in replacements.items():
@@ -62,4 +62,4 @@ def refresh_checksums():
 if __name__ == "__main__":
     (ROOT / "index.html").write_text(build(), encoding="utf-8")
     refresh_checksums()
-    print("Built Tiny AI XO 107601: bundled 185-game checkpoint, offline play and continued learning; no training run.")
+    print("Built Tiny AI XO 107601: bundled 318-game checkpoint, offline play and continued learning; no training run.")

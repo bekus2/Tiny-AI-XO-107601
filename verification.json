@@ -59,12 +59,21 @@
     "date": "2026-11-15",
     "automated_language_tests": 4,
     "browser": "Computer Use in-app browser at an isolated localhost origin",
-    "widths_px": [320, 1280],
+    "widths_px": [
+      320,
+      1280
+    ],
     "both_languages_fit_at_320": true,
-    "pre_update_checkpoint_loaded": {"games": 186, "weight_updates": 1116},
+    "pre_update_checkpoint_loaded": {
+      "games": 186,
+      "weight_updates": 1116
+    },
     "language_switch_preserved_current_board_and_checkpoint": true,
     "cancelled_english_reset_preserved_current_board_and_checkpoint": true,
-    "post_training_translated_result": {"games": 187, "weight_updates": 1122},
+    "post_training_translated_result": {
+      "games": 187,
+      "weight_updates": 1122
+    },
     "reload_restored_english_and_post_training_checkpoint": true,
     "console_errors_and_warnings": [],
     "test_experience_isolated": true
@@ -143,5 +152,22 @@
     "AI_RULES.md",
     "MODEL_CARD_RU.md",
     "evaluation/README.md"
-  ]
+  ],
+  "integration_2026_11_15": {
+    "source": "https://tiny-ai-xo-107601.beck-sarbassov.chatgpt.site",
+    "base_commit": "12af718b53035ac61e6ed7404d708e590c6938d4",
+    "checkpoint_games": 318,
+    "preserved": [
+      "RU/EN interface",
+      "original185 checkpoint",
+      "personal saved model priority",
+      "zero-game reset"
+    ],
+    "training_run": false,
+    "collective_learning": false,
+    "new_strength_benchmark": false,
+    "browser_check": "Not completed: Chromium process denied socket creation in this execution environment, including escalated retry.",
+    "remote_publication": "not yet verified",
+    "local_checks": "29/29 Node tests passed; reproducible build, checksums and git diff --check passed"
+  }
 }

@@ -1,3 +1,11 @@
+## Release update / Обновление 2026-11-15
+
+**EN:** The current default is the exact **318-game checkpoint from the published Sites release**, plus its optional bounded tactical search (enabled for human games by default). The new RU/EN interface is preserved. Self-play still uses only the neural network. Existing local saves, including intentional zero-game saves, are never silently replaced. Use “Restore the shared starting model” and confirm to replace a personal copy, exporting it first if needed. The original `model/checkpoint-185.json` is retained for reproducible historical comparisons. The older 185-game evaluation numbers below are not measurements of this stronger release. No new performance claims are made. This is a shared fixed starting model, **not cloud-synchronized collective learning**.
+
+**RU:** Теперь по умолчанию поставляется точная **модель с опытом 318 партий из опубликованной Sites-версии** и её отключаемый тактический поиск (включён при игре с человеком). Новый интерфейс RU/EN сохранён. Самоигра по-прежнему использует только нейросеть. Личный сохранённый опыт, включая намеренный старт с нуля, не перезаписывается. Для явной замены есть «Начать с общей модели» с подтверждением; сначала экспортируйте личный опыт, если он нужен. Исходный `model/checkpoint-185.json` сохранён для воспроизводимости прежних сравнений. Приведённые далее старые результаты модели185 не описывают силу новой версии. Новые показатели качества не заявляются. Это общая фиксированная стартовая модель, **не облачное коллективное обучение**.
+
+Older sections below describe the previous185-game release unless stated otherwise. / Старые разделы ниже описывают предыдущую версию с185 партиями, если не указано иное.
+
 # Model card / Карточка модели — Tiny AI XO 107601 v2.1.0
 
 ## English

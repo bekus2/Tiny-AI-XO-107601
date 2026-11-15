@@ -21,7 +21,7 @@ def main():
     html = (ROOT / "index.html").read_text(encoding="utf-8")
     embedded = re.search(r'<script type="application/json" id="bundled-checkpoint">(.*?)</script>', html, re.S)
     assert embedded, "Standalone page must include the offline checkpoint"
-    assert json.loads(embedded.group(1)) == json.loads((ROOT / "model/checkpoint-185.json").read_text(encoding="utf-8"))
+    assert json.loads(embedded.group(1)) == json.loads((ROOT / "model/checkpoint-318.json").read_text(encoding="utf-8"))
     for line in (ROOT / "SHA256SUMS.txt").read_text().splitlines():
         expected, name = line.split(None, 1)
         assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected, name
@@ -30,7 +30,7 @@ def main():
     node = os.environ.get("XO_NODE") or shutil.which("node")
     if not node:
         raise SystemExit("Node.js 18+ is required for JavaScript tests. Set XO_NODE to its executable path. Playing needs only a browser.")
-    suites = [str(ROOT / "tests" / name) for name in ("engine.test.cjs", "i18n.test.cjs")]
+    suites = [str(ROOT / "tests" / name) for name in ("engine.test.cjs", "i18n.test.cjs", "tactics.test.cjs")]
     subprocess.run([node, "--test", *suites], cwd=ROOT, check=True)
     print("Build, integrity, distribution, engine and language checks passed.")
 
